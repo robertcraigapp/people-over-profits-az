@@ -7,7 +7,7 @@ function App() {
 	return (
 		<>
 			<div>
-				{popazLogo}
+				<img src={popazLogo} alt="temporary logo for POPAZ" />
 			</div>
 			<div>
 				<p>Stay tuned for changes in Arizona.</p>
