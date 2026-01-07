@@ -1,10 +1,7 @@
 // src/App.tsx
 
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import cloudflareLogo from "./assets/Cloudflare_Logo.svg";
-import honoLogo from "./assets/hono.svg";
+import popazLogo from "./assets/popaz-logo.png";
 import "./App.css";
 
 function App() {
@@ -14,7 +11,7 @@ function App() {
 	return (
 		<>
 			<div>
-				Logo Image Here
+				<popazLogo/>
 			</div>
 			<div>
 				<p>Stay tuned for changes in Arizona.</p>
