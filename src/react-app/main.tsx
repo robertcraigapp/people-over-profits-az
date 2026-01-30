@@ -4,7 +4,7 @@ import App from './App.tsx';
 import { BrowserRouter } from 'react-router';
 import ReactDOM from 'react-dom/client';
 
-const root = document.getElementById('root');
+const root = document.getElementById('root')!;
 
 ReactDOM.createRoot(root).render(
     <StrictMode>
