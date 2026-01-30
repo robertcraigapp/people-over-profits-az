@@ -1,15 +1,6 @@
 import popazLogo from './assets/People Over Profits Logo.png';
 
 function App() {
-    const colors = [
-        { name: 'Orange', class: 'bg-brand-orange' },
-        { name: 'Sand', class: 'bg-brand-sand' },
-        { name: 'Rust', class: 'bg-brand-rust' },
-        { name: 'Plum', class: 'bg-brand-plum' },
-        { name: 'Maroon', class: 'bg-brand-maroon' },
-        { name: 'Blue', class: 'bg-brand-blue' },
-    ];
-
     return (
         <div className='min-h-screen flex flex-col font-sans selection:bg-brand-orange selection:text-white'>
             {/* Navigation */}
