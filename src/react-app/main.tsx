@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import './index.css';
+import './App.css';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router';
 import ReactDOM from 'react-dom/client';
