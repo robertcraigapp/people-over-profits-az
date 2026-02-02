@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import coalitionData from './coalitionData.json';
+import coalitionDataRaw from './coalitionData.json';
+import { CoalitionMember } from './types/CoalitionMember';
 
 function Coalition() {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
-    const [visibleCards, setVisibleCards] = useState([]);
+    const [visibleCards, setVisibleCards] = useState<number[]>([]);
+
+    const coalitionData = coalitionDataRaw as CoalitionMember[];
 
     useEffect(() => {
         // Stagger the card animations on load
@@ -98,8 +100,6 @@ function Coalition() {
                                         ? 'opacity-100 translate-y-0'
                                         : 'opacity-0 translate-y-8'
                                 } ${index % 5 === 0 ? 'lg:col-span-2' : ''}`}
-                                onMouseEnter={() => setHoveredIndex(index)}
-                                onMouseLeave={() => setHoveredIndex(null)}
                             >
                                 {/* Card Background with Gradient Border Effect */}
                                 <div className='absolute inset-0 bg-gradient-to-br from-brand-orange via-brand-rust to-brand-plum rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm'></div>
