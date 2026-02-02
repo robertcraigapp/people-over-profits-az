@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import coalitionDataRaw from './coalitionData.json';
+
 import { CoalitionMember } from './types/CoalitionMember';
 
 function Coalition() {
     const [visibleCards, setVisibleCards] = useState<number[]>([]);
 
+    const coalitionDataRaw = require('./coalitionData.json');
     const coalitionData = coalitionDataRaw as CoalitionMember[];
 
     useEffect(() => {
