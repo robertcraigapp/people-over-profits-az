@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Arizona Justice Alliance",
+        "description": "Leading grassroots advocacy organization fighting for criminal justice reform across Arizona. We work directly with impacted communities to amplify voices and drive policy change through community organizing and legislative action.",
+        "logo": "https://via.placeholder.com/300x150/8B4513/FFFFFF?text=Arizona+Justice+Alliance",
+        "focusArea": "Criminal Justice Reform",
+        "founded": "2015",
+        "location": "Phoenix, AZ",
+        "website": "https://example.org"
+    },
+    {
+        "id": 2,
+        "name": "Communities United for Dignity",
+        "description": "A coalition of immigrant rights organizations dedicated to ending mass incarceration and protecting vulnerable communities from the private prison industry's harmful practices.",
+        "logo": "https://via.placeholder.com/300x150/4A5568/FFFFFF?text=Communities+United",
+        "focusArea": "Immigrant Rights",
+        "founded": "2018",
+        "location": "Tucson, AZ",
+        "website": "https://example.org"
+    },
+    {
+        "id": 3,
+        "name": "Faith Leaders for Justice",
+        "description": "Interfaith coalition mobilizing religious communities across Arizona to advocate for humane alternatives to incarceration and restorative justice practices rooted in compassion and accountability.",
+        "logo": "https://via.placeholder.com/300x150/D97706/FFFFFF?text=Faith+Leaders",
+        "focusArea": "Faith-Based Advocacy",
+        "founded": "2012",
+        "location": "Statewide",
+        "website": "https://example.org"
+    },
+    {
+        "id": 4,
+        "name": "Arizona Student Action Network",
+        "description": "Youth-led movement organizing college students and young people to dismantle the school-to-prison pipeline and demand accountability from private prison corporations operating in Arizona.",
+        "logo": "https://via.placeholder.com/300x150/7C3AED/FFFFFF?text=Student+Action",
+        "focusArea": "Youth Organizing",
+        "founded": "2020",
+        "location": "Tempe, AZ",
+        "website": "https://example.org"
+    },
+    {
+        "id": 5,
+        "name": "Legal Defense Initiative",
+        "description": "Public interest law firm providing free legal representation to individuals harmed by private prison negligence while pursuing systemic litigation to expose human rights violations and corporate malfeasance.",
+        "logo": "https://via.placeholder.com/300x150/1E40AF/FFFFFF?text=Legal+Defense",
+        "focusArea": "Legal Advocacy",
+        "founded": "2010",
+        "location": "Phoenix, AZ",
+        "website": "https://example.org"
+    },
+    {
+        "id": 6,
+        "name": "Formerly Incarcerated Voices",
+        "description": "Peer-led organization centering the experiences and leadership of formerly incarcerated individuals in the movement to abolish private prisons and create pathways to healing and reintegration.",
+        "logo": "https://via.placeholder.com/300x150/DC2626/FFFFFF?text=FI+Voices",
+        "focusArea": "Lived Experience Leadership",
+        "founded": "2017",
+        "location": "Mesa, AZ",
+        "website": "https://example.org"
+    },
+    {
+        "id": 7,
+        "name": "Healthcare for All Coalition",
+        "description": "Advocates for adequate healthcare access in detention facilities and works to expose the medical neglect that is endemic in Arizona's private prison system, pushing for community-based health solutions.",
+        "logo": "https://via.placeholder.com/300x150/059669/FFFFFF?text=Healthcare+Coalition",
+        "focusArea": "Healthcare Justice",
+        "founded": "2016",
+        "location": "Flagstaff, AZ",
+        "website": "https://example.org"
+    },
+    {
+        "id": 8,
+        "name": "Indigenous Justice Collective",
+        "description": "Native-led organization addressing the disproportionate incarceration of Indigenous peoples and advocating for tribal sovereignty in criminal justice matters while opposing private prison expansion on tribal lands.",
+        "logo": "https://via.placeholder.com/300x150/B45309/FFFFFF?text=Indigenous+Justice",
+        "focusArea": "Indigenous Rights",
+        "founded": "2014",
+        "location": "Navajo Nation, AZ",
+        "website": "https://example.org"
+    }
+]
