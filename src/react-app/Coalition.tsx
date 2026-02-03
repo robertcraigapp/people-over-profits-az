@@ -251,7 +251,7 @@ function Coalition() {
             {/* Footer */}
             <footer className='bg-brand-maroon text-brand-sand py-10 px-6 text-center border-t-4 border-brand-orange'>
                 <p className='mb-2 font-bold text-white'>
-                    Abolish Private Prisons (POPAZ)
+                    People Over Profits - AZ (POPAZ)
                 </p>
                 <p className='text-sm opacity-80'>
                     Building a more just Arizona. © 2026

@@ -19,9 +19,18 @@ function Navigation() {
                     >
                         Coalition
                     </Link>
-                    <button className='bg-brand-orange text-white px-6 py-2 rounded font-bold hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95'>
+                    <Link
+                        to='/resources'
+                        className='text-brand-maroon font-semibold hover:text-brand-orange transition-colors'
+                    >
+                        Resources
+                    </Link>
+                    <Link
+                        to='/signup'
+                        className='bg-brand-orange text-white px-6 py-2 rounded font-bold hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95'
+                    >
                         Join the Fight
-                    </button>
+                    </Link>
                 </div>
             </div>
         </nav>

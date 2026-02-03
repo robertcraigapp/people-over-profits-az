@@ -1,82 +1,102 @@
 [
     {
         "id": 1,
-        "name": "Arizona Justice Alliance",
-        "description": "Leading grassroots advocacy organization fighting for criminal justice reform across Arizona. We work directly with impacted communities to amplify voices and drive policy change through community organizing and legislative action.",
-        "logo": "https://via.placeholder.com/300x150/8B4513/FFFFFF?text=Arizona+Justice+Alliance",
-        "focusArea": "Criminal Justice Reform",
-        "founded": "2015",
-        "location": "Phoenix, AZ",
-        "website": "https://example.org"
+        "name": "Death Penalty Alternatives of Arizona",
+        "description": "Death Penalty Alternatives for Arizona (DPAA) is a non-profit educational organization working to inform the public about the injustices surrounding the death penalty and the criminal punishment system.",
+        "logo": "https://images.squarespace-cdn.com/content/v1/62d9ddfcacd55d615a65b6bb/5d07f041-f74b-43f0-a91d-6f8efb6e6245/Untitled+design.png?format=1500w",
+        "focusArea": "Death Penalty Reform",
+        "founded": "2012",
+        "location": "Statewide",
+        "website": "https://www.azdeathpenalty.org/"
     },
     {
         "id": 2,
-        "name": "Communities United for Dignity",
-        "description": "A coalition of immigrant rights organizations dedicated to ending mass incarceration and protecting vulnerable communities from the private prison industry's harmful practices.",
-        "logo": "https://via.placeholder.com/300x150/4A5568/FFFFFF?text=Communities+United",
-        "focusArea": "Immigrant Rights",
-        "founded": "2018",
-        "location": "Tucson, AZ",
-        "website": "https://example.org"
+        "name": "Worth Rises",
+        "description": "Worth Rises works to expose the commercialization of the criminal legal system and advocate and organize to protect and return the economic resources extracted from affected communities.",
+        "logo": "https://images.squarespace-cdn.com/content/v1/58e127cb1b10e31ed45b20f4/1551572408470-EVVP11HBR6K7O5K1ZCLS/horizontal+logo+new.png?format=1500w",
+        "focusArea": "Prison Exploitation",
+        "founded": "2017",
+        "location": "New York, NY",
+        "website": "https://worthrises.org/"
     },
     {
         "id": 3,
-        "name": "Faith Leaders for Justice",
-        "description": "Interfaith coalition mobilizing religious communities across Arizona to advocate for humane alternatives to incarceration and restorative justice practices rooted in compassion and accountability.",
-        "logo": "https://via.placeholder.com/300x150/D97706/FFFFFF?text=Faith+Leaders",
-        "focusArea": "Faith-Based Advocacy",
-        "founded": "2012",
-        "location": "Statewide",
-        "website": "https://example.org"
+        "name": "Florence Immigrant & Refugee Rights Project",
+        "description": "For over thirty years, the Florence Project has pursued empowerment and justice for detained immigrants in Arizona.",
+        "logo": "https://firrp.org/wp-content/uploads/2023/11/FIRRP-Logo-Horizontal-Color-RGB.svg",
+        "focusArea": "Immigration Legal Services",
+        "founded": "1989",
+        "location": "Tucson, AZ",
+        "website": "https://firrp.org"
     },
     {
         "id": 4,
-        "name": "Arizona Student Action Network",
-        "description": "Youth-led movement organizing college students and young people to dismantle the school-to-prison pipeline and demand accountability from private prison corporations operating in Arizona.",
-        "logo": "https://via.placeholder.com/300x150/7C3AED/FFFFFF?text=Student+Action",
-        "focusArea": "Youth Organizing",
-        "founded": "2020",
-        "location": "Tempe, AZ",
-        "website": "https://example.org"
+        "name": "Phoenix Legal Action Network",
+        "description": "Focused on the things that matter most: Keeping Arizona families together, Challenging (and changing) anti-immigrant narratives, Building community power, Democratizing legal knowledge",
+        "logo": "https://cdn.prod.website-files.com/64f7a860df4652b1bcfac550/650138402ed2e1fb19a43e3e_PLAN-Logo-Full-White.svg",
+        "focusArea": "Immigrant Rights",
+        "founded": "2016",
+        "location": "Phoenix, AZ",
+        "website": "https://planphx.org/"
     },
     {
         "id": 5,
-        "name": "Legal Defense Initiative",
-        "description": "Public interest law firm providing free legal representation to individuals harmed by private prison negligence while pursuing systemic litigation to expose human rights violations and corporate malfeasance.",
-        "logo": "https://via.placeholder.com/300x150/1E40AF/FFFFFF?text=Legal+Defense",
-        "focusArea": "Legal Advocacy",
-        "founded": "2010",
-        "location": "Phoenix, AZ",
-        "website": "https://example.org"
+        "name": "Salvavision",
+        "description": "Salvavision is a Tucson, AZ-based non-profit organization that provides aid and support to asylum seekers and those who have been deported.",
+        "logo": "https://images.squarespace-cdn.com/content/v1/62e1d21491fa2557cb3d5dd6/6dbc50ee-f95b-4803-a4bb-b972ed8b06b7/site-logo-2-300x100.png?format=1500w",
+        "focusArea": "Asylum Support",
+        "founded": "2023",
+        "location": "Tucson, AZ",
+        "website": "https://salvavision.org/"
     },
     {
         "id": 6,
-        "name": "Formerly Incarcerated Voices",
-        "description": "Peer-led organization centering the experiences and leadership of formerly incarcerated individuals in the movement to abolish private prisons and create pathways to healing and reintegration.",
-        "logo": "https://via.placeholder.com/300x150/DC2626/FFFFFF?text=FI+Voices",
-        "focusArea": "Lived Experience Leadership",
-        "founded": "2017",
-        "location": "Mesa, AZ",
-        "website": "https://example.org"
+        "name": "Black Lives Matter Phoenix Metro",
+        "description": "Black Lives Matter Phoenix Metro is a Black, Queer, and Femme led organization, that centers Black people who are the most impacted and marginalized because we believe ALL BLACK LIVES MATTER. We build solidarities with other colonized folks in the Global South to end imperial rule.",
+        "logo": "https://www.blmphxmetro.org/uploads/1/4/3/8/143811130/published/blm-logo-copy.png?1679323802",
+        "focusArea": "Carceral Abolition",
+        "founded": "2020",
+        "location": "Phoenix, AZ",
+        "website": "https://www.blmphxmetro.org/"
     },
     {
         "id": 7,
-        "name": "Healthcare for All Coalition",
-        "description": "Advocates for adequate healthcare access in detention facilities and works to expose the medical neglect that is endemic in Arizona's private prison system, pushing for community-based health solutions.",
-        "logo": "https://via.placeholder.com/300x150/059669/FFFFFF?text=Healthcare+Coalition",
-        "focusArea": "Healthcare Justice",
-        "founded": "2016",
-        "location": "Flagstaff, AZ",
-        "website": "https://example.org"
+        "name": "African American Christian Clergy Coalition",
+        "description": "The vision of the AACCC is to promote unity among the clergy of African American descent in the Maricopa County Metropolitan Area in order that our individual lives will be enriched, our diverse churches and ministries will be strengthened, and the unique needs of our community will be addressed.",
+        "logo": "https://img1.wsimg.com/isteam/ip/2ac28757-9df0-4580-9d36-4a3a1bc7ed5b/AACCC%20NEW%20BLUE.png/:/rs=w:1240,h:620,cg:true,m/cr=w:1240,h:620",
+        "focusArea": "Community Leadership",
+        "founded": "2005",
+        "location": "Maricopa County",
+        "website": "https://aa3caz.com/"
     },
     {
         "id": 8,
-        "name": "Indigenous Justice Collective",
-        "description": "Native-led organization addressing the disproportionate incarceration of Indigenous peoples and advocating for tribal sovereignty in criminal justice matters while opposing private prison expansion on tribal lands.",
-        "logo": "https://via.placeholder.com/300x150/B45309/FFFFFF?text=Indigenous+Justice",
-        "focusArea": "Indigenous Rights",
-        "founded": "2014",
-        "location": "Navajo Nation, AZ",
-        "website": "https://example.org"
+        "name": "Tucson Jews For Justice",
+        "description": "To encourage and enable the Jewish Community of Tucson to collaborate and foster social justice within the Tucson progressive community",
+        "logo": "",
+        "focusArea": "Progressive Social Justice",
+        "founded": "2018",
+        "location": "Tucson, AZ",
+        "website": ""
+    },
+    {
+        "id": 9,
+        "name": "Castillo Law",
+        "description": "help Arizona families protect what matters most.",
+        "logo": "https://lirp.cdn-website.com/92f0d1e7/dms3rep/multi/opt/justicediana_logo_white-01-1920w.png",
+        "focusArea": "Family Planning Law",
+        "founded": "2022",
+        "location": "Tucson, AZ",
+        "website": "https://www.erendiracastillolaw.com/"
+    },
+    {
+        "id": 10,
+        "name": "American Civil Liberties Union - Arizona Chapter",
+        "description": "The ACLU of Arizona advances equity and dismantles systemic injustice by taking legal action, influencing policy, and mobilizing our communities to protect the civil rights, liberties, and dignity of all Arizonans.",
+        "logo": "https://www.acluaz.org/app/themes/aclu-parent/global/bundles/common/images/affiliate-logos/ACLU_AZ.svg",
+        "focusArea": "Civil Liberties",
+        "founded": "1959",
+        "location": "Statewide",
+        "website": "https://www.acluaz.org/"
     }
 ]
