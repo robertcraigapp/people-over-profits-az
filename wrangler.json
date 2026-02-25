@@ -1,15 +1,23 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "people-over-profits-az",
-	"main": "./src/worker/index.ts",
-	"compatibility_date": "2025-10-08",
-	"compatibility_flags": ["nodejs_compat"],
-	"observability": {
-		"enabled": true
-	},
-	"upload_source_maps": true,
-	"assets": {
-		"directory": "./dist/client",
-		"not_found_handling": "single-page-application"
-	}
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "people-over-profits-az",
+    "main": "./src/worker/index.ts",
+    "compatibility_date": "2025-10-08",
+    "compatibility_flags": ["nodejs_compat"],
+    "observability": {
+        "enabled": true
+    },
+    "upload_source_maps": true,
+    "assets": {
+        "directory": "./dist/client",
+        "not_found_handling": "single-page-application"
+    },
+    "env": {
+        "dev": {
+            "vars": {
+                "GOOGLE_CIVIC_API_KEY": "AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc",
+                "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb"
+            }
+        }
+    }
 }
