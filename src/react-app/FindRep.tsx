@@ -29,8 +29,14 @@ function FindRep() {
 
     // Load Google Places script once
     useEffect(() => {
-        if (document.getElementById('google-places-script')) {
+        if (window.google) {
+            // Script already fully loaded (e.g. React Strict Mode remount)
             setScriptLoaded(true);
+            return;
+        }
+        if (document.getElementById('google-places-script')) {
+            // Script tag exists but hasn't finished loading yet — register callback
+            window.initAutocomplete = () => setScriptLoaded(true);
             return;
         }
         window.initAutocomplete = () => setScriptLoaded(true);
