@@ -7,6 +7,7 @@ declare namespace Cloudflare {
 	}
 	interface Env {
 		GOOGLE_CIVIC_API_KEY: string;
+		OPENSTATES_API_KEY: string;
 	}
 }
 interface Env extends Cloudflare.Env {}

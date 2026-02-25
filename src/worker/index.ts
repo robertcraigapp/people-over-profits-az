@@ -13,49 +13,82 @@ app.get("/api/legislators", async (c) => {
         return c.json({ error: "address is required" }, 400);
     }
 
-    const apiKey = c.env.GOOGLE_CIVIC_API_KEY;
-    const url = new URL(
-        "https://civicinfo.googleapis.com/civicinfo/v2/representatives"
-    );
-    url.searchParams.set("address", address);
-    url.searchParams.set("key", apiKey);
+    const apiKey = c.env.OPENSTATES_API_KEY;
 
-    let googleRes: Response;
-    try {
-        googleRes = await fetch(url.toString());
-    } catch {
-        return c.json({ error: "Failed to reach Google Civic API" }, 502);
-    }
-
-    if (!googleRes.ok) {
-        const body = await googleRes.text();
-        return c.json({ error: "Google Civic API error", detail: body }, 502);
-    }
-
-    const data = (await googleRes.json()) as GoogleCivicResponse;
-
-    const legislators: Legislator[] = [];
-
-    for (const office of data.offices ?? []) {
-        const relevant = office.levels?.some((l) =>
-            ["country", "administrativeArea1"].includes(l)
-        );
-        if (!relevant) continue;
-
-        for (const officialIndex of office.officialIndices ?? []) {
-            const official = data.officials?.[officialIndex];
-            if (!official) continue;
-
-            legislators.push({
-                name: official.name,
-                office: office.name,
-                party: official.party ?? "Unknown",
-                phone: official.phones?.[0],
-                website: official.urls?.[0],
-                photoUrl: official.photoUrl,
-            });
+    // OpenStates GraphQL API — look up people by address
+    const query = `
+        query PeopleByLocation($address: String!) {
+            people(location: $address, first: 10) {
+                edges {
+                    node {
+                        name
+                        party
+                        currentRole {
+                            title
+                            organization {
+                                name
+                                classification
+                            }
+                            district
+                        }
+                        contactDetails {
+                            type
+                            value
+                            note
+                        }
+                        links {
+                            url
+                        }
+                        image
+                    }
+                }
+            }
         }
+    `;
+
+    let res: Response;
+    try {
+        res = await fetch("https://v3.openstates.org/graphql", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-API-KEY": apiKey,
+            },
+            body: JSON.stringify({ query, variables: { address } }),
+        });
+    } catch {
+        return c.json({ error: "Failed to reach OpenStates API" }, 502);
     }
+
+    if (!res.ok) {
+        const body = await res.text();
+        return c.json({ error: "OpenStates API error", detail: body }, 502);
+    }
+
+    const data = (await res.json()) as OpenStatesResponse;
+
+    if (data.errors?.length) {
+        return c.json({ error: "OpenStates query error", detail: data.errors[0].message }, 502);
+    }
+
+    const legislators: Legislator[] = (data.data?.people?.edges ?? []).map(({ node }) => {
+        const phone = node.contactDetails?.find((d) => d.type === "voice")?.value;
+        const website = node.links?.[0]?.url;
+        const role = node.currentRole;
+        const chamber = role?.organization?.classification === "upper" ? "Senate" : "House";
+        const office = role
+            ? `Arizona State ${chamber}, District ${role.district}`
+            : "Arizona State Legislature";
+
+        return {
+            name: node.name,
+            office,
+            party: node.party ?? "Unknown",
+            phone,
+            website,
+            photoUrl: node.image ?? undefined,
+        };
+    });
 
     return c.json({ legislators });
 });
@@ -73,17 +106,27 @@ type Legislator = {
     photoUrl?: string;
 };
 
-type GoogleCivicResponse = {
-    offices?: {
-        name: string;
-        levels?: string[];
-        officialIndices?: number[];
-    }[];
-    officials?: {
-        name: string;
-        party?: string;
-        phones?: string[];
-        urls?: string[];
-        photoUrl?: string;
-    }[];
+type OpenStatesResponse = {
+    data?: {
+        people?: {
+            edges: {
+                node: {
+                    name: string;
+                    party: string;
+                    currentRole?: {
+                        title: string;
+                        organization?: {
+                            name: string;
+                            classification: string;
+                        };
+                        district: string;
+                    };
+                    contactDetails?: { type: string; value: string; note: string }[];
+                    links?: { url: string }[];
+                    image?: string;
+                };
+            }[];
+        };
+    };
+    errors?: { message: string }[];
 };
