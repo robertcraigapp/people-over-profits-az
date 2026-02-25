@@ -30,19 +30,23 @@ const resourcesData = [
         linkLabel: 'Access Resource',
         internal: false,
     },
-    ...(FF_LEGISLATOR_LOOKUP ? [{
-        id: 4,
-        title: 'Find Your Representatives',
-        category: 'Interactive',
-        description:
-            'Enter your Arizona address to instantly find your state and federal legislators — with direct contact info so you can make your voice heard.',
-        icon: 'findrep',
-        status: 'Always Current',
-        lastUpdated: 'February 2026',
-        link: '/resources/find-rep',
-        linkLabel: 'Find My Legislators',
-        internal: true,
-    }] : []),
+    ...(FF_LEGISLATOR_LOOKUP
+        ? [
+              {
+                  id: 4,
+                  title: 'Find Your Representatives',
+                  category: 'Interactive',
+                  description:
+                      'Enter your Arizona address to instantly find your state and federal legislators — with direct contact info so you can make your voice heard.',
+                  icon: 'findrep',
+                  status: 'Always Current',
+                  lastUpdated: 'February 2026',
+                  link: '/resources/find-rep',
+                  linkLabel: 'Find My Legislators',
+                  internal: true,
+              },
+          ]
+        : []),
 ];
 
 function Resources() {
@@ -214,9 +218,9 @@ function Resources() {
                             Your Advocacy Toolkit
                         </h2>
                         <p className='text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto'>
-                            Access curated resources designed to amplify your
-                            voice and maximize your impact in the fight for
-                            justice reform.
+                            Access resources designed to amplify your voice and
+                            maximize your impact in the fight for justice
+                            reform.
                         </p>
                     </div>
 
@@ -321,7 +325,9 @@ function Resources() {
                                                 to={resource.link}
                                                 className='mt-4 inline-flex items-center gap-2 text-brand-orange font-semibold hover:text-brand-rust transition-colors group/link'
                                             >
-                                                <span>{resource.linkLabel}</span>
+                                                <span>
+                                                    {resource.linkLabel}
+                                                </span>
                                                 <svg
                                                     className='w-4 h-4 transition-transform group-hover/link:translate-x-1'
                                                     fill='none'
@@ -341,7 +347,9 @@ function Resources() {
                                                 href={resource.link}
                                                 className='mt-4 inline-flex items-center gap-2 text-brand-orange font-semibold hover:text-brand-rust transition-colors group/link'
                                             >
-                                                <span>{resource.linkLabel}</span>
+                                                <span>
+                                                    {resource.linkLabel}
+                                                </span>
                                                 <svg
                                                     className='w-4 h-4 transition-transform group-hover/link:translate-x-1'
                                                     fill='none'
