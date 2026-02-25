@@ -21,6 +21,8 @@ app.get("/api/legislators", async (c) => {
     url.searchParams.set("lat", lat);
     url.searchParams.set("lng", lng);
     url.searchParams.set("apikey", apiKey);
+    url.searchParams.append("include", "offices");
+    url.searchParams.append("include", "links");
 
     let res: Response;
     try {
@@ -50,11 +52,16 @@ app.get("/api/legislators", async (c) => {
             }
         }
 
+        const capitolOffice = person.offices?.find((o) => o.classification === "capitol") ?? person.offices?.[0];
+
         return {
             name: person.name,
             office,
             party: person.party ?? "Unknown",
             level: jurisdiction?.classification === "country" ? "federal" : "state",
+            phone: capitolOffice?.voice || undefined,
+            address: capitolOffice?.address || undefined,
+            email: person.email || undefined,
             website: person.links?.[0]?.url,
             photoUrl: person.image ?? undefined,
         };
@@ -73,6 +80,8 @@ type Legislator = {
     party: string;
     level: "state" | "federal";
     phone?: string;
+    address?: string;
+    email?: string;
     website?: string;
     photoUrl?: string;
 };
@@ -81,6 +90,8 @@ type OpenStatesResponse = {
     results: {
         name: string;
         party: string;
+        email?: string;
+        image?: string;
         current_role?: {
             title: string;
             org_classification: string;
@@ -90,7 +101,13 @@ type OpenStatesResponse = {
             name: string;
             classification: string;
         };
+        offices?: {
+            name: string;
+            classification: string;
+            voice?: string;
+            address?: string;
+            fax?: string;
+        }[];
         links?: { url: string }[];
-        image?: string;
     }[];
 };
