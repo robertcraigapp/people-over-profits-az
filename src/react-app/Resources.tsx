@@ -24,7 +24,7 @@ const resourcesData = [
         description:
             'Comprehensive toolkit for social media advocacy including graphics, key messaging, hashtags, and best practices for amplifying our mission online.',
         icon: 'social',
-        status: 'Ready to Use',
+        status: 'Ready',
         lastUpdated: 'February 2026',
         link: '#',
         linkLabel: 'Access Resource',
