@@ -15,8 +15,8 @@
     "env": {
         "dev": {
             "vars": {
-                "GOOGLE_CIVIC_API_KEY": "AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc",
-                "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb"
+                "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb",
+                "VITE_GOOGLE_PLACES_API_KEY": "AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc"
             }
         }
     }
