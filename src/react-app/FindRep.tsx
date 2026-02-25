@@ -19,7 +19,7 @@ declare global {
     }
 }
 
-const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY ?? '';
+const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY ?? 'AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc';
 
 function FindRep() {
     const containerRef = useRef<HTMLDivElement>(null);
