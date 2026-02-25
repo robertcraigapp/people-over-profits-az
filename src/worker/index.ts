@@ -15,7 +15,6 @@ app.get("/api/legislators", async (c) => {
     }
 
     const apiKey = c.env.OPENSTATES_API_KEY;
-    if (!apiKey) return c.json({ error: "Missing OPENSTATES_API_KEY binding" }, 500);
 
     // OpenStates REST geo endpoint — look up state legislators by lat/lng
     const url = new URL("https://v3.openstates.org/people.geo");
