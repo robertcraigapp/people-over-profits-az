@@ -8,54 +8,23 @@ app.use("/api/*", cors());
 app.get("/api/", (c) => c.json({ name: "Cloudflare" }));
 
 app.get("/api/legislators", async (c) => {
-    const address = c.req.query("address");
-    if (!address || address.trim() === "") {
-        return c.json({ error: "address is required" }, 400);
+    const lat = c.req.query("lat");
+    const lng = c.req.query("lng");
+    if (!lat || !lng) {
+        return c.json({ error: "lat and lng are required" }, 400);
     }
 
     const apiKey = c.env.OPENSTATES_API_KEY;
 
-    // OpenStates GraphQL API — look up people by address
-    const query = `
-        query PeopleByLocation($address: String!) {
-            people(location: $address, first: 10) {
-                edges {
-                    node {
-                        name
-                        party
-                        currentRole {
-                            title
-                            organization {
-                                name
-                                classification
-                            }
-                            district
-                        }
-                        contactDetails {
-                            type
-                            value
-                            note
-                        }
-                        links {
-                            url
-                        }
-                        image
-                    }
-                }
-            }
-        }
-    `;
+    // OpenStates REST geo endpoint — look up state legislators by lat/lng
+    const url = new URL("https://v3.openstates.org/people.geo");
+    url.searchParams.set("lat", lat);
+    url.searchParams.set("lng", lng);
+    url.searchParams.set("apikey", apiKey);
 
     let res: Response;
     try {
-        res = await fetch("https://v3.openstates.org/graphql", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-API-KEY": apiKey,
-            },
-            body: JSON.stringify({ query, variables: { address } }),
-        });
+        res = await fetch(url.toString());
     } catch {
         return c.json({ error: "Failed to reach OpenStates API" }, 502);
     }
@@ -67,26 +36,19 @@ app.get("/api/legislators", async (c) => {
 
     const data = (await res.json()) as OpenStatesResponse;
 
-    if (data.errors?.length) {
-        return c.json({ error: "OpenStates query error", detail: data.errors[0].message }, 502);
-    }
-
-    const legislators: Legislator[] = (data.data?.people?.edges ?? []).map(({ node }) => {
-        const phone = node.contactDetails?.find((d) => d.type === "voice")?.value;
-        const website = node.links?.[0]?.url;
-        const role = node.currentRole;
-        const chamber = role?.organization?.classification === "upper" ? "Senate" : "House";
+    const legislators: Legislator[] = (data.results ?? []).map((person) => {
+        const role = person.current_role;
+        const chamber = role?.org_classification === "upper" ? "Senate" : "House";
         const office = role
             ? `Arizona State ${chamber}, District ${role.district}`
             : "Arizona State Legislature";
 
         return {
-            name: node.name,
+            name: person.name,
             office,
-            party: node.party ?? "Unknown",
-            phone,
-            website,
-            photoUrl: node.image ?? undefined,
+            party: person.party ?? "Unknown",
+            website: person.links?.[0]?.url,
+            photoUrl: person.image ?? undefined,
         };
     });
 
@@ -107,26 +69,15 @@ type Legislator = {
 };
 
 type OpenStatesResponse = {
-    data?: {
-        people?: {
-            edges: {
-                node: {
-                    name: string;
-                    party: string;
-                    currentRole?: {
-                        title: string;
-                        organization?: {
-                            name: string;
-                            classification: string;
-                        };
-                        district: string;
-                    };
-                    contactDetails?: { type: string; value: string; note: string }[];
-                    links?: { url: string }[];
-                    image?: string;
-                };
-            }[];
+    results: {
+        name: string;
+        party: string;
+        current_role?: {
+            title: string;
+            org_classification: string;
+            district: string;
         };
-    };
-    errors?: { message: string }[];
+        links?: { url: string }[];
+        image?: string;
+    }[];
 };

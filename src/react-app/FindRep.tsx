@@ -22,6 +22,7 @@ function FindRep() {
     const containerRef = useRef<HTMLDivElement>(null);
     const autocompleteRef = useRef<any>(null);
     const [address, setAddress] = useState('');
+    const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
     const [legislators, setLegislators] = useState<Legislator[] | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -63,16 +64,18 @@ function FindRep() {
 
         placeAutocomplete.addEventListener('gmp-select', async (event: any) => {
             const place = event.placePrediction.toPlace();
-            await place.fetchFields({ fields: ['formattedAddress'] });
+            await place.fetchFields({ fields: ['formattedAddress', 'location'] });
             setAddress(place.formattedAddress ?? '');
+            const loc = place.location;
+            if (loc) setCoords({ lat: loc.lat(), lng: loc.lng() });
         });
     }, [scriptLoaded]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const trimmed = address.trim();
-        if (!trimmed) {
-            setError('Please enter your address.');
+        if (!trimmed || !coords) {
+            setError('Please select an address from the suggestions.');
             return;
         }
         setError(null);
@@ -80,7 +83,7 @@ function FindRep() {
         setLegislators(null);
         try {
             const res = await fetch(
-                `/api/legislators?address=${encodeURIComponent(trimmed)}`
+                `/api/legislators?lat=${coords.lat}&lng=${coords.lng}`
             );
             const json = await res.json() as any;
             if (!res.ok) {
@@ -164,7 +167,7 @@ function FindRep() {
                         <div ref={containerRef} className='mb-3' />
                         <button
                             type='submit'
-                            disabled={loading || !address}
+                            disabled={loading || !coords}
                             className='w-full bg-brand-orange text-white px-6 py-3 rounded-lg font-bold text-lg hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed'
                         >
                             {loading ? 'Searching…' : 'Find My Legislators'}
