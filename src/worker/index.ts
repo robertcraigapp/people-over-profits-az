@@ -38,10 +38,17 @@ app.get("/api/legislators", async (c) => {
 
     const legislators: Legislator[] = (data.results ?? []).map((person) => {
         const role = person.current_role;
-        const chamber = role?.org_classification === "upper" ? "Senate" : "House";
-        const office = role
-            ? `Arizona State ${chamber}, District ${role.district}`
-            : "Arizona State Legislature";
+        const jurisdiction = person.jurisdiction;
+        let office = "State Legislature";
+        if (role && jurisdiction) {
+            if (jurisdiction.classification === "country") {
+                // Federal: e.g. "US Senator (Texas)" or "US Representative (TX-10)"
+                office = `US ${role.title} (${role.district})`;
+            } else {
+                // State: e.g. "Arizona Senator, District 14"
+                office = `${jurisdiction.name} ${role.title}, District ${role.district}`;
+            }
+        }
 
         return {
             name: person.name,
@@ -76,6 +83,10 @@ type OpenStatesResponse = {
             title: string;
             org_classification: string;
             district: string;
+        };
+        jurisdiction?: {
+            name: string;
+            classification: string;
         };
         links?: { url: string }[];
         image?: string;
