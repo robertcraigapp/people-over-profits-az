@@ -12,6 +12,9 @@
         "directory": "./dist/client",
         "not_found_handling": "single-page-application"
     },
+    "vars": {
+        "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb"
+    },
     "env": {
         "dev": {
             "vars": {
