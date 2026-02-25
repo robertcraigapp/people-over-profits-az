@@ -19,7 +19,7 @@ declare global {
 const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY ?? '';
 
 function FindRep() {
-    const inputRef = useRef<HTMLInputElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const autocompleteRef = useRef<any>(null);
     const [address, setAddress] = useState('');
     const [legislators, setLegislators] = useState<Legislator[] | null>(null);
@@ -27,41 +27,45 @@ function FindRep() {
     const [error, setError] = useState<string | null>(null);
     const [scriptLoaded, setScriptLoaded] = useState(false);
 
-    // Load Google Places script once
+    // Load Google Maps JS API (v=beta for PlaceAutocompleteElement)
     useEffect(() => {
         if (window.google) {
-            // Script already fully loaded (e.g. React Strict Mode remount)
             setScriptLoaded(true);
             return;
         }
         if (document.getElementById('google-places-script')) {
-            // Script tag exists but hasn't finished loading yet — register callback
             window.initAutocomplete = () => setScriptLoaded(true);
             return;
         }
         window.initAutocomplete = () => setScriptLoaded(true);
         const script = document.createElement('script');
         script.id = 'google-places-script';
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_PLACES_API_KEY}&libraries=places&callback=initAutocomplete`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_PLACES_API_KEY}&libraries=places&v=beta&callback=initAutocomplete`;
         script.async = true;
         script.defer = true;
         document.head.appendChild(script);
     }, []);
 
-    // Initialize autocomplete once script is loaded
+    // Mount PlaceAutocompleteElement once script is ready
     useEffect(() => {
-        if (!scriptLoaded || !inputRef.current) return;
-        const autocomplete = new window.google.maps.places.Autocomplete(
-            inputRef.current,
-            { types: ['address'], componentRestrictions: { country: 'us' } }
-        );
-        autocomplete.addListener('place_changed', () => {
-            const place = autocomplete.getPlace();
-            if (place.formatted_address) {
-                setAddress(place.formatted_address);
-            }
+        if (!scriptLoaded || !containerRef.current || autocompleteRef.current) return;
+
+        const placeAutocomplete = new window.google.maps.places.PlaceAutocompleteElement({
+            componentRestrictions: { country: 'us' },
+            types: ['address'],
         });
-        autocompleteRef.current = autocomplete;
+
+        // Style the web component to match the rest of the form
+        placeAutocomplete.style.width = '100%';
+
+        containerRef.current.appendChild(placeAutocomplete);
+        autocompleteRef.current = placeAutocomplete;
+
+        placeAutocomplete.addEventListener('gmp-select', async (event: any) => {
+            const place = event.placePrediction.toPlace();
+            await place.fetchFields({ fields: ['formattedAddress'] });
+            setAddress(place.formattedAddress ?? '');
+        });
     }, [scriptLoaded]);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -153,30 +157,18 @@ function FindRep() {
             <main className='flex-grow py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-brand-sand/10'>
                 <div className='max-w-3xl mx-auto'>
                     <form onSubmit={handleSubmit} className='mb-10'>
-                        <label
-                            htmlFor='address-input'
-                            className='block text-lg font-bold text-brand-maroon mb-3'
-                        >
+                        <label className='block text-lg font-bold text-brand-maroon mb-3'>
                             Your Arizona Address
                         </label>
-                        <div className='flex gap-3'>
-                            <input
-                                id='address-input'
-                                ref={inputRef}
-                                type='text'
-                                value={address}
-                                onChange={(e) => setAddress(e.target.value)}
-                                placeholder='123 Main St, Phoenix, AZ 85001'
-                                className='flex-grow border-2 border-brand-sand rounded-lg px-4 py-3 text-lg focus:outline-none focus:border-brand-orange transition-colors'
-                            />
-                            <button
-                                type='submit'
-                                disabled={loading}
-                                className='bg-brand-orange text-white px-6 py-3 rounded-lg font-bold text-lg hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed'
-                            >
-                                {loading ? 'Searching…' : 'Find'}
-                            </button>
-                        </div>
+                        {/* PlaceAutocompleteElement mounts here */}
+                        <div ref={containerRef} className='mb-3' />
+                        <button
+                            type='submit'
+                            disabled={loading || !address}
+                            className='w-full bg-brand-orange text-white px-6 py-3 rounded-lg font-bold text-lg hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed'
+                        >
+                            {loading ? 'Searching…' : 'Find My Legislators'}
+                        </button>
                         {error && (
                             <p className='mt-3 text-red-600 font-medium'>{error}</p>
                         )}
