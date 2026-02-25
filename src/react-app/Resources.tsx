@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
+import { FF_LEGISLATOR_LOOKUP } from './featureFlags';
 
 // Placeholder data structure for resources
 const resourcesData = [
@@ -312,6 +314,47 @@ function Resources() {
                                 </div>
                             </div>
                         ))}
+                        {FF_LEGISLATOR_LOOKUP && (
+                            <div className='col-span-full md:col-span-1'>
+                                <div className='group relative'>
+                                    <div className='absolute inset-0 bg-gradient-to-br from-brand-orange via-brand-rust to-brand-plum rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm' />
+                                    <div className='relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full flex flex-col'>
+                                        <div className='relative overflow-hidden h-48 bg-gradient-to-br from-brand-orange to-brand-rust flex items-center justify-center p-8'>
+                                            <div className='relative z-10 w-24 h-24 text-white transition-transform duration-300 group-hover:scale-110'>
+                                                <svg className='w-full h-full' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={1.5} d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z' />
+                                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={1.5} d='M15 11a3 3 0 11-6 0 3 3 0 016 0z' />
+                                                </svg>
+                                            </div>
+                                            <div className='absolute top-4 right-4'>
+                                                <span className='inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-white/30'>
+                                                    Interactive
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className='p-6 flex-grow flex flex-col'>
+                                            <h3 className='text-xl md:text-2xl font-black text-brand-maroon mb-3 group-hover:text-brand-orange transition-colors'>
+                                                Find Your Representatives
+                                            </h3>
+                                            <p className='text-gray-700 leading-relaxed mb-4 flex-grow'>
+                                                Enter your Arizona address to instantly find your state and federal
+                                                legislators — with direct contact info so you can make your voice heard.
+                                            </p>
+                                            <Link
+                                                to='/resources/find-rep'
+                                                className='mt-4 inline-flex items-center gap-2 text-brand-orange font-semibold hover:text-brand-rust transition-colors group/link'
+                                            >
+                                                <span>Find My Legislators</span>
+                                                <svg className='w-4 h-4 transition-transform group-hover/link:translate-x-1' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
+                                                </svg>
+                                            </Link>
+                                        </div>
+                                        <div className='h-1 bg-gradient-to-r from-brand-orange via-brand-rust to-brand-plum transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left' />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* Additional Resources Section */}

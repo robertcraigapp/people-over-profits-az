@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import popazLogo from './assets/People Over Profits Logo.png';
+import { FF_LEGISLATOR_LOOKUP } from './featureFlags';
 
 function Navigation() {
     return (
@@ -25,6 +26,14 @@ function Navigation() {
                     >
                         Resources
                     </Link>
+                    {FF_LEGISLATOR_LOOKUP && (
+                        <Link
+                            to='/resources/find-rep'
+                            className='text-brand-maroon font-semibold hover:text-brand-orange transition-colors'
+                        >
+                            Find Your Rep
+                        </Link>
+                    )}
                     <Link
                         to='/signup'
                         className='bg-brand-orange text-white px-6 py-2 rounded font-bold hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95'
