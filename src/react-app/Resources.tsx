@@ -14,17 +14,8 @@ const resourcesData = [
         status: 'Updated Weekly',
         lastUpdated: 'February 2026',
         link: '#',
-    },
-    {
-        id: 2,
-        title: 'State Representative Contact Information',
-        category: 'Advocacy',
-        description:
-            'Direct contact information for Arizona state representatives and senators. Find your district representatives and learn how to effectively communicate your concerns.',
-        icon: 'contact',
-        status: 'Current Session',
-        lastUpdated: 'January 2026',
-        link: '#',
+        linkLabel: 'Access Resource',
+        internal: false,
     },
     {
         id: 3,
@@ -36,7 +27,22 @@ const resourcesData = [
         status: 'Ready to Use',
         lastUpdated: 'February 2026',
         link: '#',
+        linkLabel: 'Access Resource',
+        internal: false,
     },
+    ...(FF_LEGISLATOR_LOOKUP ? [{
+        id: 4,
+        title: 'Find Your Representatives',
+        category: 'Interactive',
+        description:
+            'Enter your Arizona address to instantly find your state and federal legislators — with direct contact info so you can make your voice heard.',
+        icon: 'findrep',
+        status: 'Always Current',
+        lastUpdated: 'February 2026',
+        link: '/resources/find-rep',
+        linkLabel: 'Find My Legislators',
+        internal: true,
+    }] : []),
 ];
 
 function Resources() {
@@ -101,6 +107,28 @@ function Resources() {
                         />
                     </svg>
                 );
+            case 'findrep':
+                return (
+                    <svg
+                        className='w-full h-full'
+                        fill='none'
+                        stroke='currentColor'
+                        viewBox='0 0 24 24'
+                    >
+                        <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={1.5}
+                            d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+                        />
+                        <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={1.5}
+                            d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
+                        />
+                    </svg>
+                );
             default:
                 return null;
         }
@@ -138,7 +166,7 @@ function Resources() {
                         </div>
                     </div>
 
-                    <h1 className='text-5xl md:text-7xl font-black mb-6 tracking-tight leading-none'>
+                    <h1 className='font-display text-6xl md:text-8xl font-bold mb-6 tracking-tight leading-none uppercase'>
                         Advocacy{' '}
                         <span className='text-brand-orange'>Resources</span>
                     </h1>
@@ -181,11 +209,11 @@ function Resources() {
             <main className='flex-grow py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-brand-sand/10'>
                 <div className='max-w-7xl mx-auto'>
                     {/* Section Introduction */}
-                    <div className='max-w-3xl mb-16'>
-                        <h2 className='text-3xl md:text-4xl font-black text-brand-maroon mb-4'>
+                    <div className='text-center mb-16'>
+                        <h2 className='font-display text-3xl md:text-4xl font-bold text-brand-maroon mb-4 uppercase tracking-wide'>
                             Your Advocacy Toolkit
                         </h2>
-                        <p className='text-lg text-gray-600 leading-relaxed'>
+                        <p className='text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto'>
                             Access curated resources designed to amplify your
                             voice and maximize your impact in the fight for
                             justice reform.
@@ -239,7 +267,7 @@ function Resources() {
                                     {/* Content Section */}
                                     <div className='p-6 flex-grow flex flex-col'>
                                         {/* Resource Title */}
-                                        <h3 className='text-xl md:text-2xl font-black text-brand-maroon mb-3 group-hover:text-brand-orange transition-colors'>
+                                        <h3 className='font-display text-xl md:text-2xl font-bold text-brand-maroon mb-3 group-hover:text-brand-orange transition-colors uppercase tracking-wide'>
                                             {resource.title}
                                         </h3>
 
@@ -288,25 +316,47 @@ function Resources() {
                                         </div>
 
                                         {/* Access Link */}
-                                        <a
-                                            href={resource.link}
-                                            className='mt-4 inline-flex items-center gap-2 text-brand-orange font-semibold hover:text-brand-rust transition-colors group/link'
-                                        >
-                                            <span>Access Resource</span>
-                                            <svg
-                                                className='w-4 h-4 transition-transform group-hover/link:translate-x-1'
-                                                fill='none'
-                                                stroke='currentColor'
-                                                viewBox='0 0 24 24'
+                                        {resource.internal ? (
+                                            <Link
+                                                to={resource.link}
+                                                className='mt-4 inline-flex items-center gap-2 text-brand-orange font-semibold hover:text-brand-rust transition-colors group/link'
                                             >
-                                                <path
-                                                    strokeLinecap='round'
-                                                    strokeLinejoin='round'
-                                                    strokeWidth={2}
-                                                    d='M9 5l7 7-7 7'
-                                                />
-                                            </svg>
-                                        </a>
+                                                <span>{resource.linkLabel}</span>
+                                                <svg
+                                                    className='w-4 h-4 transition-transform group-hover/link:translate-x-1'
+                                                    fill='none'
+                                                    stroke='currentColor'
+                                                    viewBox='0 0 24 24'
+                                                >
+                                                    <path
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                        strokeWidth={2}
+                                                        d='M9 5l7 7-7 7'
+                                                    />
+                                                </svg>
+                                            </Link>
+                                        ) : (
+                                            <a
+                                                href={resource.link}
+                                                className='mt-4 inline-flex items-center gap-2 text-brand-orange font-semibold hover:text-brand-rust transition-colors group/link'
+                                            >
+                                                <span>{resource.linkLabel}</span>
+                                                <svg
+                                                    className='w-4 h-4 transition-transform group-hover/link:translate-x-1'
+                                                    fill='none'
+                                                    stroke='currentColor'
+                                                    viewBox='0 0 24 24'
+                                                >
+                                                    <path
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                        strokeWidth={2}
+                                                        d='M9 5l7 7-7 7'
+                                                    />
+                                                </svg>
+                                            </a>
+                                        )}
                                     </div>
 
                                     {/* Animated accent bar */}
@@ -314,53 +364,12 @@ function Resources() {
                                 </div>
                             </div>
                         ))}
-                        {FF_LEGISLATOR_LOOKUP && (
-                            <div className='col-span-full md:col-span-1'>
-                                <div className='group relative'>
-                                    <div className='absolute inset-0 bg-gradient-to-br from-brand-orange via-brand-rust to-brand-plum rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm' />
-                                    <div className='relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full flex flex-col'>
-                                        <div className='relative overflow-hidden h-48 bg-gradient-to-br from-brand-orange to-brand-rust flex items-center justify-center p-8'>
-                                            <div className='relative z-10 w-24 h-24 text-white transition-transform duration-300 group-hover:scale-110'>
-                                                <svg className='w-full h-full' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={1.5} d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z' />
-                                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={1.5} d='M15 11a3 3 0 11-6 0 3 3 0 016 0z' />
-                                                </svg>
-                                            </div>
-                                            <div className='absolute top-4 right-4'>
-                                                <span className='inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-white/30'>
-                                                    Interactive
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div className='p-6 flex-grow flex flex-col'>
-                                            <h3 className='text-xl md:text-2xl font-black text-brand-maroon mb-3 group-hover:text-brand-orange transition-colors'>
-                                                Find Your Representatives
-                                            </h3>
-                                            <p className='text-gray-700 leading-relaxed mb-4 flex-grow'>
-                                                Enter your Arizona address to instantly find your state and federal
-                                                legislators — with direct contact info so you can make your voice heard.
-                                            </p>
-                                            <Link
-                                                to='/resources/find-rep'
-                                                className='mt-4 inline-flex items-center gap-2 text-brand-orange font-semibold hover:text-brand-rust transition-colors group/link'
-                                            >
-                                                <span>Find My Legislators</span>
-                                                <svg className='w-4 h-4 transition-transform group-hover/link:translate-x-1' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
-                                                </svg>
-                                            </Link>
-                                        </div>
-                                        <div className='h-1 bg-gradient-to-r from-brand-orange via-brand-rust to-brand-plum transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left' />
-                                    </div>
-                                </div>
-                            </div>
-                        )}
                     </div>
 
                     {/* Additional Resources Section */}
                     <div className='bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-gray-100 mb-20'>
-                        <h2 className='text-3xl md:text-4xl font-black text-brand-maroon mb-6'>
-                            Additional Support
+                        <h2 className='font-display text-3xl md:text-4xl font-bold text-brand-maroon mb-6 uppercase tracking-wide'>
+                            Additional Support In Development
                         </h2>
 
                         <div className='grid md:grid-cols-2 gap-8'>
@@ -506,7 +515,7 @@ function Resources() {
                         </div>
 
                         <div className='relative z-10'>
-                            <h2 className='text-3xl md:text-4xl font-black mb-4'>
+                            <h2 className='font-display text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wide'>
                                 Need More Resources?
                             </h2>
                             <p className='text-xl text-brand-sand mb-8 max-w-2xl mx-auto'>

@@ -53,7 +53,7 @@ function SignUp() {
                         </div>
                     </div>
 
-                    <h1 className='text-5xl md:text-7xl font-black mb-6 tracking-tight leading-none'>
+                    <h1 className='font-display text-6xl md:text-8xl font-bold mb-6 tracking-tight leading-none uppercase'>
                         Stay{' '}
                         <span className='text-brand-orange'>Connected</span>
                     </h1>
@@ -110,7 +110,7 @@ function SignUp() {
                             ></div>
 
                             <div className='relative'>
-                                <h2 className='text-3xl md:text-4xl font-black text-white mb-3'>
+                                <h2 className='font-display text-3xl md:text-4xl font-bold text-white mb-3 uppercase tracking-wide'>
                                     Sign Up Today
                                 </h2>
                                 <p className='text-brand-sand text-lg'>
@@ -124,7 +124,7 @@ function SignUp() {
                         <form onSubmit={handleSubmit} className='p-8 md:p-12'>
                             {/* Personal Information Section */}
                             <div className='mb-10'>
-                                <h3 className='text-2xl font-black text-brand-maroon mb-6 flex items-center gap-3'>
+                                <h3 className='font-display text-2xl font-bold text-brand-maroon mb-6 flex items-center gap-3 uppercase tracking-wide'>
                                     <div className='w-8 h-8 bg-gradient-to-br from-brand-orange to-brand-rust rounded-lg flex items-center justify-center flex-shrink-0'>
                                         <span className='text-white font-black text-sm'>
                                             1
@@ -226,7 +226,7 @@ function SignUp() {
 
                             {/* Volunteer Interest Section */}
                             <div className='mb-10'>
-                                <h3 className='text-2xl font-black text-brand-maroon mb-6 flex items-center gap-3'>
+                                <h3 className='font-display text-2xl font-bold text-brand-maroon mb-6 flex items-center gap-3 uppercase tracking-wide'>
                                     <div className='w-8 h-8 bg-gradient-to-br from-brand-rust to-brand-orange rounded-lg flex items-center justify-center flex-shrink-0'>
                                         <span className='text-white font-black text-sm'>
                                             2

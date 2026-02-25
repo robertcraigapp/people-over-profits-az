@@ -141,7 +141,7 @@ function FindRep() {
                             </span>
                         </div>
                     </div>
-                    <h1 className='text-5xl md:text-7xl font-black mb-6 tracking-tight leading-none'>
+                    <h1 className='font-display text-6xl md:text-8xl font-bold mb-6 tracking-tight leading-none uppercase'>
                         Find Your{' '}
                         <span className='text-brand-orange'>Legislators</span>
                     </h1>

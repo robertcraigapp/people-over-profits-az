@@ -3,7 +3,7 @@ import Navigation from './Navigation';
 
 function Layout() {
     return (
-        <div className='min-h-screen flex flex-col font-sans selection:bg-brand-orange selection:text-white'>
+        <div className='min-h-screen flex flex-col font-sans antialiased selection:bg-brand-orange selection:text-white'>
             <Navigation />
             <Outlet />
         </div>

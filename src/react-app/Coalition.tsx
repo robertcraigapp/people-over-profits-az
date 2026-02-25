@@ -35,7 +35,7 @@ function Coalition() {
                         </div>
                     </div>
 
-                    <h1 className='text-5xl md:text-7xl font-black mb-6 tracking-tight leading-none'>
+                    <h1 className='font-display text-6xl md:text-8xl font-bold mb-6 tracking-tight leading-none uppercase'>
                         Our <span className='text-brand-orange'>Coalition</span>
                     </h1>
 
@@ -78,11 +78,11 @@ function Coalition() {
             <main className='flex-grow py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-brand-sand/10'>
                 <div className='max-w-7xl mx-auto'>
                     {/* Section Introduction */}
-                    <div className='max-w-3xl mb-16'>
-                        <h2 className='text-3xl md:text-4xl font-black text-brand-maroon mb-4'>
+                    <div className='text-center mb-16'>
+                        <h2 className='font-display text-3xl md:text-4xl font-bold text-brand-maroon mb-4 uppercase tracking-wide'>
                             Meet Our Partners
                         </h2>
-                        <p className='text-lg text-gray-600 leading-relaxed'>
+                        <p className='text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto'>
                             Each organization brings unique expertise,
                             perspective, and passion to our collective fight for
                             justice reform in Arizona.
@@ -132,7 +132,7 @@ function Coalition() {
                                         </div>
 
                                         {/* Organization Name */}
-                                        <h3 className='text-xl md:text-2xl font-black text-brand-maroon mb-3 group-hover:text-brand-orange transition-colors'>
+                                        <h3 className='font-display text-xl md:text-2xl font-bold text-brand-maroon mb-3 group-hover:text-brand-orange transition-colors uppercase tracking-wide'>
                                             {member.name}
                                         </h3>
 
@@ -233,7 +233,7 @@ function Coalition() {
                         </div>
 
                         <div className='relative z-10'>
-                            <h2 className='text-3xl md:text-4xl font-black mb-4'>
+                            <h2 className='font-display text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wide'>
                                 Join Our Coalition
                             </h2>
                             <p className='text-xl text-brand-sand mb-8 max-w-2xl mx-auto'>
