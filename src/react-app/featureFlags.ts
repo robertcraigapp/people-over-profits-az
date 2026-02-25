@@ -1,3 +1,4 @@
 // src/react-app/featureFlags.ts
 export const FF_LEGISLATOR_LOOKUP =
-    import.meta.env.VITE_FF_LEGISLATOR_LOOKUP === 'true';
+    window.location.hostname === 'localhost' ||
+    window.location.hostname.includes('workers.dev');
