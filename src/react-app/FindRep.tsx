@@ -4,6 +4,7 @@ type Legislator = {
     name: string;
     office: string;
     party: string;
+    level: "state" | "federal";
     phone?: string;
     website?: string;
     photoUrl?: string;
@@ -112,14 +113,8 @@ function FindRep() {
         }
     };
 
-    const stateLegislators = legislators?.filter((l) =>
-        l.office.toLowerCase().includes('arizona') ||
-        l.office.toLowerCase().includes('state')
-    ) ?? [];
-
-    const federalLegislators = legislators?.filter(
-        (l) => !stateLegislators.includes(l)
-    ) ?? [];
+    const stateLegislators = legislators?.filter((l) => l.level === 'state') ?? [];
+    const federalLegislators = legislators?.filter((l) => l.level === 'federal') ?? [];
 
     return (
         <>

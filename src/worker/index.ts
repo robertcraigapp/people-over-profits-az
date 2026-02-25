@@ -54,6 +54,7 @@ app.get("/api/legislators", async (c) => {
             name: person.name,
             office,
             party: person.party ?? "Unknown",
+            level: jurisdiction?.classification === "country" ? "federal" : "state",
             website: person.links?.[0]?.url,
             photoUrl: person.image ?? undefined,
         };
@@ -70,6 +71,7 @@ type Legislator = {
     name: string;
     office: string;
     party: string;
+    level: "state" | "federal";
     phone?: string;
     website?: string;
     photoUrl?: string;
