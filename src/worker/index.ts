@@ -98,9 +98,11 @@ app.post('/api/signup', async (c) => {
     const html = buildEmailHtml(body);
     const safeName = (s: string) => s.replace(/[\r\n]/g, ' ');
     const subject = `New Signup: ${safeName(body.firstName)} ${safeName(body.lastName)}`;
+    const messageId = `<${Date.now()}.${Math.random().toString(36).slice(2)}@popaz.org>`;
     const raw = [
         `From: signup@popaz.org`,
         `To: robertcraig@abolishprivateprisons.org`,
+        `Message-ID: ${messageId}`,
         `Subject: ${subject}`,
         `MIME-Version: 1.0`,
         `Content-Type: text/html; charset=utf-8`,
