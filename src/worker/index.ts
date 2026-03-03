@@ -83,6 +83,10 @@ app.post("/api/signup", async (c) => {
         return c.json({ error: "firstName, lastName, and email are required" }, 400);
     }
 
+    if (!body.email.includes('@')) {
+        return c.json({ error: "Invalid email address" }, 400);
+    }
+
     const html = buildEmailHtml(body);
     const safeName = (s: string) => s.replace(/[\r\n]/g, " ");
     const subject = `New Signup: ${safeName(body.firstName)} ${safeName(body.lastName)}`;

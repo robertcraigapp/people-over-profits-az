@@ -7,7 +7,6 @@ function SignUp() {
         email: '',
         phone: '',
         zipCode: '',
-        interests: [],
         volunteer: '',
         hearAbout: '',
     });
