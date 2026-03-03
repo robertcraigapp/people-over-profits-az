@@ -12,6 +12,10 @@ function SignUp() {
         hearAbout: '',
     });
 
+    const [submitting, setSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState('');
+
     const handleInputChange = (e: any) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -20,10 +24,23 @@ function SignUp() {
         }));
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        // Form submission logic will go here
-        console.log('Form submitted:', formData);
+        setSubmitting(true);
+        setSubmitError('');
+        try {
+            const res = await fetch('/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            if (!res.ok) throw new Error('Server error');
+            setSubmitted(true);
+        } catch {
+            setSubmitError('Something went wrong. Please try again.');
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -348,36 +365,49 @@ function SignUp() {
                                     Required fields
                                 </p>
 
-                                <button
-                                    type='submit'
-                                    className='w-full sm:w-auto bg-gradient-to-r from-brand-maroon via-brand-plum to-brand-rust text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl transition-all hover:scale-105 active:scale-95 relative overflow-hidden group'
-                                >
-                                    {/* Hexagonal pattern on hover */}
-                                    <div
-                                        className='absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity'
-                                        style={{
-                                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0l12.99 7.5v15L15 30 2.01 22.5v-15z' fill='%23ffffff'/%3E%3C/svg%3E")`,
-                                            backgroundSize: '30px 30px',
-                                        }}
-                                    ></div>
-
-                                    <span className='relative flex items-center gap-2 justify-center'>
-                                        Join the Movement
-                                        <svg
-                                            className='w-5 h-5'
-                                            fill='none'
-                                            stroke='currentColor'
-                                            viewBox='0 0 24 24'
+                                {submitted ? (
+                                    <div className='w-full sm:w-auto bg-green-50 border border-green-200 text-green-800 px-8 py-4 rounded-lg font-bold text-lg text-center'>
+                                        Thank you for signing up!
+                                    </div>
+                                ) : (
+                                    <>
+                                        {submitError && (
+                                            <p className='text-red-600 text-sm'>{submitError}</p>
+                                        )}
+                                        <button
+                                            type='submit'
+                                            disabled={submitting}
+                                            className='w-full sm:w-auto bg-gradient-to-r from-brand-maroon via-brand-plum to-brand-rust text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl transition-all hover:scale-105 active:scale-95 relative overflow-hidden group disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100'
                                         >
-                                            <path
-                                                strokeLinecap='round'
-                                                strokeLinejoin='round'
-                                                strokeWidth={2}
-                                                d='M13 7l5 5m0 0l-5 5m5-5H6'
-                                            />
-                                        </svg>
-                                    </span>
-                                </button>
+                                            <div
+                                                className='absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity'
+                                                style={{
+                                                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0l12.99 7.5v15L15 30 2.01 22.5v-15z' fill='%23ffffff'/%3E%3C/svg%3E")`,
+                                                    backgroundSize: '30px 30px',
+                                                }}
+                                            ></div>
+
+                                            <span className='relative flex items-center gap-2 justify-center'>
+                                                {submitting ? 'Sending...' : 'Join the Movement'}
+                                                {!submitting && (
+                                                    <svg
+                                                        className='w-5 h-5'
+                                                        fill='none'
+                                                        stroke='currentColor'
+                                                        viewBox='0 0 24 24'
+                                                    >
+                                                        <path
+                                                            strokeLinecap='round'
+                                                            strokeLinejoin='round'
+                                                            strokeWidth={2}
+                                                            d='M13 7l5 5m0 0l-5 5m5-5H6'
+                                                        />
+                                                    </svg>
+                                                )}
+                                            </span>
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </form>
                     </div>
