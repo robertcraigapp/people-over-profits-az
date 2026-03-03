@@ -118,7 +118,7 @@ app.post('/api/signup', async (c) => {
         await c.env.EMAIL.send(message);
     } catch (err) {
         console.error('Email send failed:', err);
-        return c.json({ error: 'Failed to send notification email' }, 500);
+        return c.json({ error: 'Failed to send notification email', detail: String(err) }, 500);
     }
 
     return c.json({ success: true });
