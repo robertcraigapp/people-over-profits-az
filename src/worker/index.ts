@@ -84,7 +84,8 @@ app.post("/api/signup", async (c) => {
     }
 
     const html = buildEmailHtml(body);
-    const subject = `New Signup: ${body.firstName} ${body.lastName}`;
+    const safeName = (s: string) => s.replace(/[\r\n]/g, " ");
+    const subject = `New Signup: ${safeName(body.firstName)} ${safeName(body.lastName)}`;
     const raw = [
         `From: noreply@example.com`,
         `To: notify@example.com`,
@@ -133,6 +134,15 @@ type SignupBody = {
     hearAbout?: string;
 };
 
+function escapeHtml(s: string): string {
+    return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#x27;");
+}
+
 function buildEmailHtml(data: SignupBody): string {
     const rows = [
         ["First Name", data.firstName],
@@ -145,7 +155,7 @@ function buildEmailHtml(data: SignupBody): string {
     ]
         .map(
             ([label, value]) =>
-                `<tr><td style="padding:8px 12px;font-weight:bold;background:#f5f5f5;border:1px solid #ddd">${label}</td><td style="padding:8px 12px;border:1px solid #ddd">${value}</td></tr>`
+                `<tr><td style="padding:8px 12px;font-weight:bold;background:#f5f5f5;border:1px solid #ddd">${label}</td><td style="padding:8px 12px;border:1px solid #ddd">${escapeHtml(value)}</td></tr>`
         )
         .join("");
 
