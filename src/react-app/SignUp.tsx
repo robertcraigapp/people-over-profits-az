@@ -359,6 +359,11 @@ function SignUp() {
                             </div>
 
                             {/* Submit Button */}
+                            {submitError && (
+                                <p className='w-full text-red-600 text-sm mt-2' role='alert'>
+                                    {submitError}
+                                </p>
+                            )}
                             <div className='flex flex-col sm:flex-row gap-4 items-center justify-between'>
                                 <p className='text-sm text-gray-600'>
                                     <span className='text-brand-orange'>*</span>{' '}
@@ -371,12 +376,10 @@ function SignUp() {
                                     </div>
                                 ) : (
                                     <>
-                                        {submitError && (
-                                            <p className='text-red-600 text-sm'>{submitError}</p>
-                                        )}
                                         <button
                                             type='submit'
                                             disabled={submitting}
+                                            aria-busy={submitting}
                                             className='w-full sm:w-auto bg-gradient-to-r from-brand-maroon via-brand-plum to-brand-rust text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl transition-all hover:scale-105 active:scale-95 relative overflow-hidden group disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100'
                                         >
                                             <div
