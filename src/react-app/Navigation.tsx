@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import popazLogo from './assets/People Over Profits Logo.png';
-import { FF_LEGISLATOR_LOOKUP } from './featureFlags';
+import { FF_RESOURCES, FF_LEGISLATOR_LOOKUP } from './featureFlags';
 
 function Navigation() {
     return (
@@ -20,12 +20,14 @@ function Navigation() {
                     >
                         Coalition
                     </Link>
-                    <Link
-                        to='/resources'
-                        className='font-display text-brand-maroon font-semibold hover:text-brand-orange transition-colors tracking-wide uppercase text-sm'
-                    >
-                        Resources
-                    </Link>
+                    {FF_RESOURCES && (
+                        <Link
+                            to='/resources'
+                            className='font-display text-brand-maroon font-semibold hover:text-brand-orange transition-colors tracking-wide uppercase text-sm'
+                        >
+                            Resources
+                        </Link>
+                    )}
                     {FF_LEGISLATOR_LOOKUP && (
                         <Link
                             to='/resources/find-rep'
@@ -36,7 +38,7 @@ function Navigation() {
                     )}
                     <Link
                         to='/signup'
-                        className='font-display bg-brand-orange text-white px-6 py-2 rounded font-bold hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 uppercase tracking-wider text-sm'
+                        className='font-display bg-brand-misty-blue text-white px-6 py-2 rounded font-bold hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 uppercase tracking-wider text-sm'
                     >
                         Join the Fight
                     </Link>

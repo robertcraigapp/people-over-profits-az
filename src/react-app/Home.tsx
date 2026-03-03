@@ -5,7 +5,7 @@ function Home() {
         <>
             <main className='flex-grow'>
                 {/* Hero Section */}
-                <div className='relative overflow-hidden bg-brand-maroon text-white'>
+                <div className='relative overflow-hidden bg-gradient-to-br from-brand-plum via-brand-rust to-brand-sand text-white'>
                     {/* Decorative background elements */}
                     <div className='absolute inset-0 opacity-10'>
                         <div className='absolute top-20 left-10 w-96 h-96 bg-brand-orange rounded-full blur-3xl'></div>
@@ -13,41 +13,28 @@ function Home() {
                     </div>
 
                     <div className='relative max-w-6xl mx-auto py-28 px-6 text-center'>
-                        {/* Badge */}
-                        <div className='mb-8 inline-block'>
-                            <div className='flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2'>
-                                <div className='w-2 h-2 bg-brand-orange rounded-full animate-pulse'></div>
-                                <span className='text-sm font-semibold tracking-widest uppercase text-brand-sand'>
-                                    Arizona Justice Reform
-                                </span>
-                            </div>
-                        </div>
-
                         <h1 className='font-display text-6xl md:text-8xl font-bold mb-6 tracking-tight leading-none uppercase'>
                             People Over{' '}
-                            <span className='text-brand-orange'>Profits</span>
+                            <span className='text-brand-misty-blue'>
+                                Profits
+                            </span>
                         </h1>
 
                         <p className='text-xl md:text-2xl text-brand-sand font-medium mb-10 max-w-2xl mx-auto leading-relaxed'>
-                            Abolish Private Prisons in Arizona.
+                            Eliminate Profiteering from Arizona's Criminal Legal
+                            System.
                         </p>
-
-                        <div className='bg-brand-plum/40 border border-brand-plum/70 px-8 py-5 rounded-xl inline-block mb-12 max-w-xl'>
-                            <p className='text-lg italic text-white/90'>
-                                "Stay tuned for changes in Arizona."
-                            </p>
-                        </div>
 
                         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
                             <Link
                                 to='/signup'
-                                className='bg-brand-orange text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-rust transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95'
+                                className='bg-brand-misty-blue text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-blue transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95'
                             >
                                 Join the Fight
                             </Link>
                             <Link
                                 to='/coalition'
-                                className='bg-white/10 border border-white/30 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/20 transition-all backdrop-blur-sm'
+                                className='bg-brand-maroon border border-white/30 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-rust transition-all backdrop-blur-sm'
                             >
                                 Our Coalition
                             </Link>
@@ -63,8 +50,8 @@ function Home() {
                                 What We Stand For
                             </h2>
                             <p className='text-gray-600 text-lg max-w-2xl mx-auto'>
-                                A unified front demanding accountability, equity,
-                                and justice in Arizona's prison system.
+                                A unified front demanding accountability,
+                                equity, and justice in Arizona's prison system.
                             </p>
                         </div>
 
@@ -167,7 +154,7 @@ function Home() {
             </main>
 
             {/* Footer */}
-            <footer className='bg-brand-maroon text-brand-sand py-10 px-6 text-center border-t-4 border-brand-orange'>
+            <footer className='bg-brand-plum text-brand-sand py-10 px-6 text-center border-t-4 border-brand-orange'>
                 <p className='mb-2 font-bold text-white tracking-wide'>
                     People Over Profits — AZ (POPAZ)
                 </p>

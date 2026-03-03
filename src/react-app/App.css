@@ -2,13 +2,14 @@
 @import 'tailwindcss';
 
 @theme {
-    /* Brand color palette — do not change */
+    /* brand color palette — do not change */
     --color-brand-orange: #e36c12;
     --color-brand-sand: #c48164;
     --color-brand-rust: #7b2e1d;
     --color-brand-plum: #6a4351;
     --color-brand-maroon: #390e17;
     --color-brand-blue: #3f75b2;
+    --color-brand-misty-blue: #95acc4;
 
     /* Typography */
     --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;

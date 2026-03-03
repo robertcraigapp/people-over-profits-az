@@ -18,7 +18,7 @@ function Coalition() {
     return (
         <>
             {/* Hero Section */}
-            <div className='relative overflow-hidden bg-gradient-to-br from-brand-maroon via-brand-plum to-brand-maroon text-white'>
+            <div className='relative overflow-hidden bg-gradient-to-br from-brand-plum via-brand-rust to-brand-sand text-white'>
                 {/* Decorative background elements */}
                 <div className='absolute inset-0 opacity-10'>
                     <div className='absolute top-20 left-10 w-96 h-96 bg-brand-orange rounded-full blur-3xl'></div>
@@ -26,17 +26,9 @@ function Coalition() {
                 </div>
 
                 <div className='relative max-w-6xl mx-auto py-24 px-6'>
-                    <div className='mb-6 inline-block'>
-                        <div className='flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2'>
-                            <div className='w-2 h-2 bg-brand-orange rounded-full animate-pulse'></div>
-                            <span className='text-sm font-semibold tracking-wide uppercase text-brand-sand'>
-                                United for Change
-                            </span>
-                        </div>
-                    </div>
-
                     <h1 className='font-display text-6xl md:text-8xl font-bold mb-6 tracking-tight leading-none uppercase'>
-                        Our <span className='text-brand-orange'>Coalition</span>
+                        Our{' '}
+                        <span className='text-brand-misty-blue'>Coalition</span>
                     </h1>
 
                     <p className='text-xl md:text-2xl text-brand-sand font-medium max-w-3xl mb-8 leading-relaxed'>
@@ -50,23 +42,23 @@ function Coalition() {
                             <div className='text-4xl font-black text-brand-orange mb-2'>
                                 {coalitionData.length}
                             </div>
-                            <div className='text-sm text-brand-sand uppercase tracking-wider'>
+                            <div className='text-sm text-white uppercase tracking-wider'>
                                 Partner Organizations
                             </div>
                         </div>
                         <div className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all'>
-                            <div className='text-4xl font-black text-brand-blue mb-2'>
+                            <div className='text-4xl font-black text-brand-orange mb-2'>
                                 100+
                             </div>
-                            <div className='text-sm text-brand-sand uppercase tracking-wider'>
+                            <div className='text-sm text-white uppercase tracking-wider'>
                                 Combined Years Experience
                             </div>
                         </div>
                         <div className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all'>
-                            <div className='text-4xl font-black text-brand-rust mb-2'>
+                            <div className='text-4xl font-black text-brand-orange mb-2'>
                                 1
                             </div>
-                            <div className='text-sm text-brand-sand uppercase tracking-wider'>
+                            <div className='text-sm text-white uppercase tracking-wider'>
                                 Unified Mission
                             </div>
                         </div>
@@ -249,7 +241,7 @@ function Coalition() {
             </main>
 
             {/* Footer */}
-            <footer className='bg-brand-maroon text-brand-sand py-10 px-6 text-center border-t-4 border-brand-orange'>
+            <footer className='bg-brand-plum text-brand-sand py-10 px-6 text-center border-t-4 border-brand-orange'>
                 <p className='mb-2 font-bold text-white'>
                     People Over Profits - AZ (POPAZ)
                 </p>
