@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { EmailMessage } from "cloudflare:email";
 
 const app = new Hono<{ Bindings: Env }>();
 
@@ -70,6 +71,42 @@ app.get("/api/legislators", async (c) => {
     return c.json({ legislators });
 });
 
+app.post("/api/signup", async (c) => {
+    let body: SignupBody;
+    try {
+        body = await c.req.json<SignupBody>();
+    } catch {
+        return c.json({ error: "Invalid JSON" }, 400);
+    }
+
+    if (!body.firstName || !body.lastName || !body.email) {
+        return c.json({ error: "firstName, lastName, and email are required" }, 400);
+    }
+
+    const html = buildEmailHtml(body);
+    const subject = `New Signup: ${body.firstName} ${body.lastName}`;
+    const raw = [
+        `From: noreply@example.com`,
+        `To: notify@example.com`,
+        `Subject: ${subject}`,
+        `MIME-Version: 1.0`,
+        `Content-Type: text/html; charset=utf-8`,
+        ``,
+        html,
+    ].join("\r\n");
+
+    const message = new EmailMessage("noreply@example.com", "notify@example.com", raw);
+
+    try {
+        await c.env.EMAIL.send(message);
+    } catch (err) {
+        console.error("Email send failed:", err);
+        return c.json({ error: "Failed to send notification email" }, 500);
+    }
+
+    return c.json({ success: true });
+});
+
 export default app;
 
 // --- Types ---
@@ -85,6 +122,40 @@ type Legislator = {
     website?: string;
     photoUrl?: string;
 };
+
+type SignupBody = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone?: string;
+    zipCode?: string;
+    volunteer?: string;
+    hearAbout?: string;
+};
+
+function buildEmailHtml(data: SignupBody): string {
+    const rows = [
+        ["First Name", data.firstName],
+        ["Last Name", data.lastName],
+        ["Email", data.email],
+        ["Phone", data.phone || "—"],
+        ["Zip Code", data.zipCode || "—"],
+        ["Volunteer Interest", data.volunteer || "—"],
+        ["How They Heard", data.hearAbout || "—"],
+    ]
+        .map(
+            ([label, value]) =>
+                `<tr><td style="padding:8px 12px;font-weight:bold;background:#f5f5f5;border:1px solid #ddd">${label}</td><td style="padding:8px 12px;border:1px solid #ddd">${value}</td></tr>`
+        )
+        .join("");
+
+    return `
+        <html><body style="font-family:sans-serif;max-width:600px;margin:0 auto">
+        <h2 style="color:#6b1f2a">New POPAZ Signup</h2>
+        <table style="border-collapse:collapse;width:100%">${rows}</table>
+        </body></html>
+    `;
+}
 
 type OpenStatesResponse = {
     results: {
