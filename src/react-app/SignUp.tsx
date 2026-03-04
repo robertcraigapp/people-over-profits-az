@@ -77,7 +77,8 @@ function SignUp() {
                     <p className='text-xl md:text-2xl text-brand-sand font-medium max-w-3xl mb-8 leading-relaxed'>
                         Join our mailing list to receive updates on advocacy
                         opportunities, upcoming events, and critical
-                        developments in Arizona's fight for justice reform.
+                        developments in Arizona's fight to remove profit from
+                        the criminal legal system.
                     </p>
 
                     <div className='grid md:grid-cols-3 gap-6 mt-12'>
@@ -131,7 +132,8 @@ function SignUp() {
                                 </h2>
                                 <p className='text-brand-sand text-lg'>
                                     Your voice matters. Join thousands of
-                                    Arizonans working toward justice reform.
+                                    Arizonans working to end profiteering in
+                                    the criminal legal system.
                                 </p>
                             </div>
                         </div>

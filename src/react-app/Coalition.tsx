@@ -32,8 +32,10 @@ function Coalition() {
 
                     <p className='text-xl md:text-2xl text-brand-sand font-medium max-w-3xl mb-8 leading-relaxed'>
                         A powerful alliance of organizations united in the
-                        mission to abolish private prisons and build a more just
-                        Arizona.
+                        mission to remove profit from Arizona's criminal legal
+                        system — ending private prisons, predatory
+                        communication fees, and the fines and fees that
+                        criminalize poverty.
                     </p>
 
                     <div className='grid md:grid-cols-3 gap-6 mt-12'>
@@ -75,8 +77,9 @@ function Coalition() {
                         </h2>
                         <p className='text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto'>
                             Each organization brings unique expertise,
-                            perspective, and passion to our collective fight for
-                            justice reform in Arizona.
+                            perspective, and passion to our collective fight
+                            against profiteering in Arizona's criminal legal
+                            system.
                         </p>
                     </div>
 

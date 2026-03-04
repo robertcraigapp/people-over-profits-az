@@ -19,8 +19,9 @@ function Home() {
                         </h1>
 
                         <p className='text-xl md:text-2xl text-brand-sand font-medium mb-10 max-w-2xl mx-auto leading-relaxed'>
-                            Eliminate Profiteering from Arizona's Criminal Legal
-                            System.
+                            End corporate profiteering from Arizona's criminal
+                            legal system — from private prisons to predatory
+                            phone calls, tablets, fines, and fees.
                         </p>
 
                         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
@@ -49,7 +50,9 @@ function Home() {
                             </h2>
                             <p className='text-gray-600 text-lg max-w-2xl mx-auto'>
                                 A unified front demanding accountability,
-                                equity, and justice in Arizona's prison system.
+                                equity, and justice in Arizona's criminal legal
+                                system — at every point where profit is
+                                extracted from people.
                             </p>
                         </div>
 
@@ -77,10 +80,14 @@ function Home() {
                                         The Issue
                                     </h3>
                                     <p className='text-gray-600 leading-relaxed'>
-                                        For-profit incarceration prioritizes
-                                        shareholder returns over human dignity,
-                                        harming Arizona communities and
-                                        perpetuating cycles of injustice.
+                                        Private companies profit at every stage
+                                        of Arizona's criminal legal system —
+                                        from private prisons with occupancy
+                                        guarantees, to predatory phone and
+                                        tablet fees, to court fines and
+                                        supervision fees that trap people in
+                                        debt. Shareholder returns come at the
+                                        expense of human dignity.
                                     </p>
                                 </div>
                             </div>
@@ -109,9 +116,11 @@ function Home() {
                                     </h3>
                                     <p className='text-gray-600 leading-relaxed'>
                                         Our roadmap to legislative change in the
-                                        Grand Canyon State — through coalition
-                                        building, community organizing, and
-                                        direct advocacy.
+                                        Grand Canyon State — ending profit
+                                        incentives in incarceration, capping
+                                        predatory communication fees, and
+                                        eliminating fines and fees that
+                                        criminalize poverty.
                                     </p>
                                 </div>
                             </div>
@@ -140,8 +149,9 @@ function Home() {
                                     </h3>
                                     <p className='text-gray-600 leading-relaxed'>
                                         How you can help us mobilize across
-                                        Arizona counties — from contacting
-                                        legislators to joining our growing
+                                        Arizona — from contacting legislators to
+                                        exposing the companies that profit from
+                                        incarceration and joining our growing
                                         coalition.
                                     </p>
                                 </div>

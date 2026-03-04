@@ -177,7 +177,9 @@ function Resources() {
 
                     <p className='text-xl md:text-2xl text-brand-sand font-medium max-w-3xl mb-8 leading-relaxed'>
                         Essential tools and information to empower your activism
-                        and drive meaningful change in Arizona's justice system.
+                        and drive meaningful change — ending profiteering from
+                        private prisons, predatory fees, and the criminalization
+                        of poverty in Arizona.
                     </p>
 
                     <div className='grid md:grid-cols-3 gap-6 mt-12'>
@@ -219,8 +221,8 @@ function Resources() {
                         </h2>
                         <p className='text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto'>
                             Access resources designed to amplify your voice and
-                            maximize your impact in the fight for justice
-                            reform.
+                            maximize your impact in the fight to remove profit
+                            from Arizona's criminal legal system.
                         </p>
                     </div>
 
@@ -405,8 +407,9 @@ function Resources() {
                                     </h3>
                                     <p className='text-gray-600'>
                                         In-depth guides, fact sheets, and
-                                        research reports on prison reform
-                                        issues.
+                                        research reports on private prisons,
+                                        predatory phone and tablet fees, court
+                                        fines, and supervision fees in Arizona.
                                     </p>
                                 </div>
                             </div>
