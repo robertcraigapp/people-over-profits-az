@@ -1,4 +1,7 @@
 import { Hono } from 'hono';
+import { cors } from 'hono/cors';
+import { EmailMessage } from 'cloudflare:email';
+
 const app = new Hono<{ Bindings: Env }>();
 
 app.use('/api/*', cors());
@@ -22,25 +25,15 @@ app.get('/api/legislators', async (c) => {
     url.searchParams.append('include', 'offices');
     url.searchParams.append('include', 'links');
 
-    const requestUrl = url.toString();
-    console.log(
-        '[legislators] request url:',
-        requestUrl.replace(apiKey, '[REDACTED]'),
-    );
-
     let res: Response;
     try {
-        res = await fetch(requestUrl);
-    } catch (e) {
-        console.error('[legislators] fetch threw:', e);
+        res = await fetch(url.toString());
+    } catch {
         return c.json({ error: 'Failed to reach OpenStates API' }, 502);
     }
 
-    console.log('[legislators] response status:', res.status, res.statusText);
-
     if (!res.ok) {
         const body = await res.text();
-        console.error('[legislators] error body:', body);
         return c.json({ error: 'OpenStates API error', detail: body }, 502);
     }
 
@@ -137,3 +130,86 @@ app.post('/api/signup', async (c) => {
 });
 
 export default app;
+
+// --- Types ---
+
+type Legislator = {
+    name: string;
+    office: string;
+    party: string;
+    level: 'state' | 'federal';
+    phone?: string;
+    address?: string;
+    email?: string;
+    website?: string;
+    photoUrl?: string;
+};
+
+type SignupBody = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone?: string;
+    zipCode?: string;
+    volunteer?: string;
+    hearAbout?: string;
+};
+
+function escapeHtml(s: string): string {
+    return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
+}
+
+function buildEmailHtml(data: SignupBody): string {
+    const rows = [
+        ['First Name', data.firstName],
+        ['Last Name', data.lastName],
+        ['Email', data.email],
+        ['Phone', data.phone || '—'],
+        ['Zip Code', data.zipCode || '—'],
+        ['Volunteer Interest', data.volunteer || '—'],
+        ['How They Heard', data.hearAbout || '—'],
+    ]
+        .map(
+            ([label, value]) =>
+                `<tr><td style="padding:8px 12px;font-weight:bold;background:#f5f5f5;border:1px solid #ddd">${label}</td><td style="padding:8px 12px;border:1px solid #ddd">${escapeHtml(value)}</td></tr>`,
+        )
+        .join('');
+
+    return `
+        <html><body style="font-family:sans-serif;max-width:600px;margin:0 auto">
+        <h2 style="color:#6b1f2a">New POPAZ Signup</h2>
+        <table style="border-collapse:collapse;width:100%">${rows}</table>
+        </body></html>
+    `;
+}
+
+type OpenStatesResponse = {
+    results: {
+        name: string;
+        party: string;
+        email?: string;
+        image?: string;
+        current_role?: {
+            title: string;
+            org_classification: string;
+            district: string;
+        };
+        jurisdiction?: {
+            name: string;
+            classification: string;
+        };
+        offices?: {
+            name: string;
+            classification: string;
+            voice?: string;
+            address?: string;
+            fax?: string;
+        }[];
+        links?: { url: string }[];
+    }[];
+};
