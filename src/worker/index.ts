@@ -25,15 +25,22 @@ app.get('/api/legislators', async (c) => {
     url.searchParams.append('include', 'offices');
     url.searchParams.append('include', 'links');
 
+    const requestUrl = url.toString();
+    console.log('[legislators] request url:', requestUrl.replace(apiKey, '[REDACTED]'));
+
     let res: Response;
     try {
-        res = await fetch(url.toString());
-    } catch {
+        res = await fetch(requestUrl);
+    } catch (e) {
+        console.error('[legislators] fetch threw:', e);
         return c.json({ error: 'Failed to reach OpenStates API' }, 502);
     }
 
+    console.log('[legislators] response status:', res.status, res.statusText);
+
     if (!res.ok) {
         const body = await res.text();
+        console.error('[legislators] error body:', body);
         return c.json({ error: 'OpenStates API error', detail: body }, 502);
     }
 
