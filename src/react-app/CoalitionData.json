@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Death Penalty Alternatives of Arizona",
+        "description": "Death Penalty Alternatives for Arizona (DPAA) is a non-profit educational organization working to inform the public about the injustices surrounding the death penalty and the criminal punishment system.",
+        "logo": "https://images.squarespace-cdn.com/content/v1/62d9ddfcacd55d615a65b6bb/5d07f041-f74b-43f0-a91d-6f8efb6e6245/Untitled+design.png?format=1500w",
+        "focusArea": "Death Penalty Reform",
+        "founded": "2012",
+        "location": "Statewide",
+        "website": "https://www.azdeathpenalty.org/"
+    },
+    {
+        "id": 2,
+        "name": "Worth Rises",
+        "description": "Worth Rises works to expose the commercialization of the criminal legal system and advocate and organize to protect and return the economic resources extracted from affected communities.",
+        "logo": "https://images.squarespace-cdn.com/content/v1/58e127cb1b10e31ed45b20f4/1551572408470-EVVP11HBR6K7O5K1ZCLS/horizontal+logo+new.png?format=1500w",
+        "focusArea": "Prison Exploitation",
+        "founded": "2017",
+        "location": "New York, NY",
+        "website": "https://worthrises.org/"
+    },
+    {
+        "id": 3,
+        "name": "Florence Immigrant & Refugee Rights Project",
+        "description": "For over thirty years, the Florence Project has pursued empowerment and justice for detained immigrants in Arizona.",
+        "logo": "https://firrp.org/wp-content/uploads/2023/11/FIRRP-Logo-Horizontal-Color-RGB.svg",
+        "focusArea": "Immigration Legal Services",
+        "founded": "1989",
+        "location": "Tucson, AZ",
+        "website": "https://firrp.org"
+    },
+    {
+        "id": 4,
+        "name": "Phoenix Legal Action Network",
+        "description": "Focused on the things that matter most: Keeping Arizona families together, Challenging (and changing) anti-immigrant narratives, Building community power, Democratizing legal knowledge",
+        "logo": "https://cdn.prod.website-files.com/64f7a860df4652b1bcfac550/650138402ed2e1fb19a43e3e_PLAN-Logo-Full-White.svg",
+        "focusArea": "Immigrant Rights",
+        "founded": "2016",
+        "location": "Phoenix, AZ",
+        "website": "https://planphx.org/"
+    },
+    {
+        "id": 5,
+        "name": "Salvavision",
+        "description": "Salvavision is a Tucson, AZ-based non-profit organization that provides aid and support to asylum seekers and those who have been deported.",
+        "logo": "https://images.squarespace-cdn.com/content/v1/62e1d21491fa2557cb3d5dd6/6dbc50ee-f95b-4803-a4bb-b972ed8b06b7/site-logo-2-300x100.png?format=1500w",
+        "focusArea": "Asylum Support",
+        "founded": "2023",
+        "location": "Tucson, AZ",
+        "website": "https://salvavision.org/"
+    },
+    {
+        "id": 6,
+        "name": "Black Lives Matter Phoenix Metro",
+        "description": "Black Lives Matter Phoenix Metro is a Black, Queer, and Femme led organization, that centers Black people who are the most impacted and marginalized because we believe ALL BLACK LIVES MATTER. We build solidarities with other colonized folks in the Global South to end imperial rule.",
+        "logo": "https://www.blmphxmetro.org/uploads/1/4/3/8/143811130/published/blm-logo-copy.png?1679323802",
+        "focusArea": "Carceral Abolition",
+        "founded": "2020",
+        "location": "Phoenix, AZ",
+        "website": "https://www.blmphxmetro.org/"
+    },
+    {
+        "id": 9,
+        "name": "Castillo Law",
+        "description": "help Arizona families protect what matters most.",
+        "logo": "https://lirp.cdn-website.com/92f0d1e7/dms3rep/multi/opt/justicediana_logo_white-01-1920w.png",
+        "focusArea": "Family Planning Law",
+        "founded": "2022",
+        "location": "Tucson, AZ",
+        "website": "https://www.erendiracastillolaw.com/"
+    },
+    {
+        "id": 10,
+        "name": "American Civil Liberties Union - Arizona Chapter",
+        "description": "The ACLU of Arizona advances equity and dismantles systemic injustice by taking legal action, influencing policy, and mobilizing our communities to protect the civil rights, liberties, and dignity of all Arizonans.",
+        "logo": "https://www.acluaz.org/app/themes/aclu-parent/global/bundles/common/images/affiliate-logos/ACLU_AZ.svg",
+        "focusArea": "Civil Liberties",
+        "founded": "1959",
+        "location": "Statewide",
+        "website": "https://www.acluaz.org/"
+    }
+]

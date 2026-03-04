@@ -1,57 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
 @import 'tailwindcss';
 
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-}
-
 @theme {
-    /* These are our brand colors. */
+    /* brand color palette — do not change */
     --color-brand-orange: #e36c12;
     --color-brand-sand: #c48164;
     --color-brand-rust: #7b2e1d;
     --color-brand-plum: #6a4351;
     --color-brand-maroon: #390e17;
     --color-brand-blue: #3f75b2;
-}
+    --color-brand-misty-blue: #95acc4;
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-}
-.logo.cloudflare:hover {
-    filter: drop-shadow(0 0 2em #f6821faa);
-}
-
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
-    }
-}
-
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
+    /* Typography */
+    --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Oswald', ui-sans-serif, system-ui, sans-serif;
 }
