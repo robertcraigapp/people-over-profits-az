@@ -38,7 +38,7 @@ function Navigation() {
                     )}
                     <Link
                         to='/signup'
-                        className='font-display bg-brand-misty-blue text-white px-6 py-2 rounded font-bold hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 uppercase tracking-wider text-sm'
+                        className='font-display bg-brand-blue text-white px-6 py-2 rounded font-bold hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 uppercase tracking-wider text-sm'
                     >
                         Join the Fight
                     </Link>

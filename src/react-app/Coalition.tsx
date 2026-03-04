@@ -27,8 +27,7 @@ function Coalition() {
 
                 <div className='relative max-w-6xl mx-auto py-24 px-6'>
                     <h1 className='font-display text-6xl md:text-8xl font-bold mb-6 tracking-tight leading-none uppercase'>
-                        Our{' '}
-                        <span className='text-brand-misty-blue'>Coalition</span>
+                        Our <span className='text-brand-blue'>Coalition</span>
                     </h1>
 
                     <p className='text-xl md:text-2xl text-brand-sand font-medium max-w-3xl mb-8 leading-relaxed'>

@@ -15,9 +15,7 @@ function Home() {
                     <div className='relative max-w-6xl mx-auto py-28 px-6 text-center'>
                         <h1 className='font-display text-6xl md:text-8xl font-bold mb-6 tracking-tight leading-none uppercase'>
                             People Over{' '}
-                            <span className='text-brand-misty-blue'>
-                                Profits
-                            </span>
+                            <span className='text-brand-blue'>Profits</span>
                         </h1>
 
                         <p className='text-xl md:text-2xl text-brand-sand font-medium mb-10 max-w-2xl mx-auto leading-relaxed'>
@@ -28,7 +26,7 @@ function Home() {
                         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
                             <Link
                                 to='/signup'
-                                className='bg-brand-misty-blue text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-blue transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95'
+                                className='bg-brand-blue text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-blue transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95'
                             >
                                 Join the Fight
                             </Link>
