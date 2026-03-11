@@ -12,8 +12,16 @@
         "directory": "./dist/client",
         "not_found_handling": "single-page-application"
     },
+    "kv_namespaces": [
+        {
+            "binding": "LEGISCAN_CACHE",
+            "id": "1e23b32b4a94467c9c3342c76ab65886",
+            "preview_id": "01931a80f1b14cfea5bbf6750d4fa0f4"
+        }
+    ],
     "vars": {
-        "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb"
+        "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb",
+        "LEGISCAN_API_KEY": "SET_VIA_SECRET"
     },
     "send_email": [
         {
@@ -25,7 +33,8 @@
         "dev": {
             "vars": {
                 "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb",
-                "VITE_GOOGLE_PLACES_API_KEY": "AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc"
+                "VITE_GOOGLE_PLACES_API_KEY": "AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc",
+                "LEGISCAN_API_KEY": "SET_IN_DEV_VARS"
             },
             "send_email": [
                 {
