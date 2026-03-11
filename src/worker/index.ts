@@ -1,6 +1,8 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { EmailMessage } from 'cloudflare:email';
+import type { TrackedBill, MasterlistCache, BillCache, LegiScanBill, BillResponse } from '../shared/billTypes';
+import trackedBillsData from '../react-app/trackedBills.json';
 
 const app = new Hono<{ Bindings: Env }>();
 
@@ -76,6 +78,68 @@ app.get('/api/legislators', async (c) => {
     return c.json({ legislators });
 });
 
+app.get('/api/bills', async (c) => {
+    const apiKey = c.env.LEGISCAN_API_KEY;
+    const kv = c.env.LEGISCAN_CACHE;
+    const trackedBills = trackedBillsData as TrackedBill[];
+
+    if (!apiKey) {
+        return c.json({ error: 'LEGISCAN_API_KEY not configured' }, 500);
+    }
+
+    // Step 1: Get or refresh masterlist cache
+    let masterlist: MasterlistCache;
+    const cachedMasterlist = await kv.get(MASTERLIST_CACHE_KEY, 'json') as MasterlistCache | null;
+
+    if (cachedMasterlist) {
+        masterlist = cachedMasterlist;
+    } else {
+        try {
+            masterlist = await fetchMasterList(apiKey);
+            await kv.put(MASTERLIST_CACHE_KEY, JSON.stringify(masterlist), {
+                expirationTtl: ttlUntilMidnightUTC(),
+            });
+        } catch (e) {
+            console.error('[bills] masterlist fetch failed:', e);
+            return c.json({ error: 'Failed to fetch bill masterlist' }, 502);
+        }
+    }
+
+    // Step 2: For each tracked bill, resolve and fetch details
+    const results: BillResponse[] = await Promise.all(
+        trackedBills.map(async (tracked) => {
+            const masterEntry = masterlist[tracked.billNumber];
+            if (!masterEntry) {
+                console.warn(`[bills] ${tracked.billNumber} not found in masterlist`);
+                return { ...tracked, bill: null };
+            }
+
+            const { billId, changeHash } = masterEntry;
+            const cacheKey = billCacheKey(billId);
+
+            // Check if cached bill is still current via change_hash
+            const cachedBill = await kv.get(cacheKey, 'json') as BillCache | null;
+            if (cachedBill && cachedBill.changeHash === changeHash) {
+                return { ...tracked, bill: cachedBill.data };
+            }
+
+            // Fetch fresh bill data
+            try {
+                const bill = await fetchBill(apiKey, billId);
+                const entry: BillCache = { changeHash, data: bill };
+                await kv.put(cacheKey, JSON.stringify(entry));
+                return { ...tracked, bill };
+            } catch (e) {
+                console.error(`[bills] getBill failed for ${tracked.billNumber}:`, e);
+                // Return stale data if available, null if not
+                return { ...tracked, bill: cachedBill?.data ?? null };
+            }
+        }),
+    );
+
+    return c.json({ bills: results });
+});
+
 app.post('/api/signup', async (c) => {
     let body: SignupBody;
     try {
@@ -130,6 +194,51 @@ app.post('/api/signup', async (c) => {
 });
 
 export default app;
+
+// --- LegiScan Helpers ---
+
+const LEGISCAN_BASE = 'https://api.legiscan.com/';
+const MASTERLIST_CACHE_KEY = 'legiscan:masterlist';
+
+function billCacheKey(billId: number): string {
+    return `legiscan:bill:${billId}`;
+}
+
+// Seconds from now until next midnight UTC
+function ttlUntilMidnightUTC(): number {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setUTCHours(24, 0, 0, 0);
+    return Math.max(60, Math.floor((midnight.getTime() - now.getTime()) / 1000));
+}
+
+async function fetchMasterList(apiKey: string): Promise<MasterlistCache> {
+    const url = `${LEGISCAN_BASE}?key=${apiKey}&op=getMasterListRaw&state=AZ`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`MasterList fetch failed: ${res.status}`);
+    const json = (await res.json()) as {
+        status: string;
+        masterlist: Record<string, { bill_id: number; number: string; change_hash: string }>;
+    };
+    if (json.status !== 'OK') throw new Error('MasterList status not OK');
+
+    const result: MasterlistCache = {};
+    for (const entry of Object.values(json.masterlist)) {
+        // The masterlist contains a "0" metadata entry — skip non-bill entries
+        if (!entry.number) continue;
+        result[entry.number] = { billId: entry.bill_id, changeHash: entry.change_hash };
+    }
+    return result;
+}
+
+async function fetchBill(apiKey: string, billId: number): Promise<LegiScanBill> {
+    const url = `${LEGISCAN_BASE}?key=${apiKey}&op=getBill&id=${billId}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`getBill fetch failed: ${res.status}`);
+    const json = (await res.json()) as { status: string; bill: LegiScanBill };
+    if (json.status !== 'OK') throw new Error('getBill status not OK');
+    return json.bill;
+}
 
 // --- Types ---
 
