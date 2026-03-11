@@ -20,8 +20,7 @@
         }
     ],
     "vars": {
-        "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb",
-        "LEGISCAN_API_KEY": "SET_VIA_SECRET"
+        "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb"
     },
     "send_email": [
         {
@@ -33,8 +32,7 @@
         "dev": {
             "vars": {
                 "OPENSTATES_API_KEY": "2aaac5c0-9176-4be5-990e-1e50f3f290cb",
-                "VITE_GOOGLE_PLACES_API_KEY": "AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc",
-                "LEGISCAN_API_KEY": "SET_IN_DEV_VARS"
+                "VITE_GOOGLE_PLACES_API_KEY": "AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc"
             },
             "send_email": [
                 {
