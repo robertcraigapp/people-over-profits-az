@@ -1,7 +1,52 @@
 [
     {
-        "billNumber": "HB2001",
-        "popazInsight": "Example insight about this bill and its impact on Arizonans.",
-        "popazPosition": "oppose"
+        "billNumber": "HB2823",
+        "popazInsight": "Minimum occupancy clauses — sometimes called 'bed quotas' — guarantee private prison companies a steady revenue stream regardless of actual incarceration rates, creating a direct financial incentive to keep people locked up. HB2823 would ban these provisions from Arizona Department of Corrections contracts, removing a core profit motive from the criminal legal system and ensuring that incarceration decisions are driven by public safety, not corporate margins.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "SB1774",
+        "popazInsight": "Arizona currently requires people with felony convictions to navigate bureaucratic hurdles — including court applications — before regaining the right to vote. SB1774 would make voting rights restoration automatic upon final discharge from incarceration or probation, ensuring that people who have served their time can fully participate in democracy without additional punishment. Restoring civic participation is essential to genuine reintegration.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "HB4075",
+        "popazInsight": "HB4075 goes further than SB1774 by restoring voting rights at the moment of release from incarceration — not just after probation ends. It also retroactively applies to people already released, eliminates automatic voter registration cancellations based on past convictions, and requires prisons and probation departments to notify people of their restored rights in writing. Voting is a fundamental right that should not be stripped beyond the term of incarceration itself.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "HB2825",
+        "popazInsight": "Criminalizing poverty is one of the clearest ways profit enters the criminal legal system. Courts regularly issue arrest warrants and incarcerate people who simply cannot afford to pay fines and fees — generating revenue while destroying lives. HB2825 would require courts to determine whether a person willfully refused to pay before pursuing enforcement, prohibit incarceration based solely on indigence, and require plain-language notice of defendants' rights. No one should be jailed for being poor.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "SB1110",
+        "popazInsight": "Prisons cost Arizona taxpayers over $25,000 per person per year, while evidence consistently shows that incarceration increases recidivism compared to community supervision. SB1110 would expand eligibility for home confinement to people within 18 months of release who have served at least one year, allowing earlier reintegration into community, employment, and family life. Reducing prison populations saves money and produces better outcomes — without compromising public safety.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "HB2749",
+        "popazInsight": "A felony record is a lifetime barrier to employment, housing, and opportunity — punishment that extends far beyond any sentence. HB2749 would allow courts to redesignate certain nonviolent Class 4, 5, and 6 felonies as misdemeanors after five years of compliance with no new convictions, giving people a meaningful second chance while reserving the benefit for those who have demonstrated rehabilitation. Removing unnecessary barriers to reintegration breaks the cycle that feeds mass incarceration.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "HB2319",
+        "popazInsight": "HB2319 allows people convicted of certain nonviolent drug and DUI felonies to have their convictions permanently redesignated as misdemeanors when sealing their records, after at least five years of compliance. Criminal records follow people for life — blocking jobs, housing, and professional licenses. Reducing the stigma and legal weight of these convictions helps formerly incarcerated people rebuild their lives and reduces the conditions that lead back to the criminal legal system.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "SB1140",
+        "popazInsight": "Homelessness, untreated mental illness, and addiction are among the leading drivers of incarceration in Arizona. Without addressing these underlying conditions, the revolving door between the street and the criminal legal system continues to spin — to the benefit of private prison operators. SB1140 would fund a five-year telehealth pilot program delivering mental health and addiction recovery services directly to homeless Arizonans in shelters, addressing root causes of incarceration rather than profiting from them.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "HB2358",
+        "popazInsight": "The 'gay and transgender panic' defense allows perpetrators to reduce criminal charges for violence against LGBTQ+ people by claiming that their victim's identity or a rejected advance constituted legal provocation. This discriminatory doctrine treats LGBTQ+ lives as inherently less protected under Arizona law. HB2358 would explicitly remove sexual orientation and gender identity from what qualifies as adequate provocation, ensuring that all Arizonans receive equal protection under the criminal legal system.",
+        "popazPosition": "support"
+    },
+    {
+        "billNumber": "HB2267",
+        "popazInsight": "POPAZ is monitoring this bill. Please update this insight with POPAZ's position and analysis.",
+        "popazPosition": "monitor"
     }
 ]
