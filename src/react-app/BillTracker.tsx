@@ -120,9 +120,12 @@ export default function BillTracker() {
 
     useEffect(() => {
         fetch('/api/bills')
-            .then((r) => r.json())
+            .then((r) => {
+                if (!r.ok) throw new Error(`API error ${r.status}`);
+                return r.json();
+            })
             .then((data: { bills: BillResponse[] }) => {
-                setBills(data.bills);
+                setBills(data.bills ?? []);
                 setLoading(false);
             })
             .catch(() => {
