@@ -5,7 +5,8 @@ import Coalition from './Coalition';
 import Resources from './Resources';
 import SignUp from './SignUp';
 import FindRep from './FindRep';
-import { FF_LEGISLATOR_LOOKUP } from './featureFlags';
+import BillTracker from './BillTracker';
+import { FF_LEGISLATOR_LOOKUP, FF_BILL_TRACKER } from './featureFlags';
 
 function App() {
     return (
@@ -17,6 +18,9 @@ function App() {
                 <Route path='signup' element={<SignUp />} />
                 {FF_LEGISLATOR_LOOKUP && (
                     <Route path='resources/find-rep' element={<FindRep />} />
+                )}
+                {FF_BILL_TRACKER && (
+                    <Route path='bills' element={<BillTracker />} />
                 )}
             </Route>
         </Routes>

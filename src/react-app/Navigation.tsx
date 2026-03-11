@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import popazLogo from './assets/People Over Profits Logo.png';
-import { FF_RESOURCES, FF_LEGISLATOR_LOOKUP } from './featureFlags';
+import { FF_RESOURCES, FF_LEGISLATOR_LOOKUP, FF_BILL_TRACKER } from './featureFlags';
 
 function Navigation() {
     return (
@@ -34,6 +34,14 @@ function Navigation() {
                             className='font-display text-brand-maroon font-semibold hover:text-brand-orange transition-colors tracking-wide uppercase text-sm'
                         >
                             Find Your Rep
+                        </Link>
+                    )}
+                    {FF_BILL_TRACKER && (
+                        <Link
+                            to='/bills'
+                            className='font-display text-brand-maroon font-semibold hover:text-brand-orange transition-colors tracking-wide uppercase text-sm'
+                        >
+                            Track Bills
                         </Link>
                     )}
                     <Link
