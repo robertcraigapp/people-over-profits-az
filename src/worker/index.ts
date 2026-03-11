@@ -83,6 +83,7 @@ app.get('/api/bills', async (c) => {
     const kv = c.env.LEGISCAN_CACHE;
     const trackedBills = trackedBillsData as TrackedBill[];
 
+    console.log('[bills] API key present:', !!apiKey, '| length:', apiKey?.length ?? 0);
     if (!apiKey) {
         return c.json({ error: 'LEGISCAN_API_KEY not configured' }, 500);
     }
