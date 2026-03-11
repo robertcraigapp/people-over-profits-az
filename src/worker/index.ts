@@ -117,22 +117,21 @@ app.get('/api/bills', async (c) => {
             const { billId, changeHash } = masterEntry;
             const cacheKey = billCacheKey(billId);
 
-            // Check if cached bill is still current via change_hash
-            const cachedBill = await kv.get(cacheKey, 'json') as BillCache | null;
-            if (cachedBill && cachedBill.changeHash === changeHash) {
-                return { ...tracked, bill: cachedBill.data };
-            }
-
-            // Fetch fresh bill data
             try {
+                // Check if cached bill is still current via change_hash
+                const cachedBill = await kv.get(cacheKey, 'json') as BillCache | null;
+                if (cachedBill && cachedBill.changeHash === changeHash) {
+                    return { ...tracked, bill: cachedBill.data };
+                }
+
+                // Fetch fresh bill data
                 const bill = await fetchBill(apiKey, billId);
                 const entry: BillCache = { changeHash, data: bill };
-                await kv.put(cacheKey, JSON.stringify(entry));
+                await kv.put(cacheKey, JSON.stringify(entry), { expirationTtl: 30 * 24 * 60 * 60 });
                 return { ...tracked, bill };
             } catch (e) {
-                console.error(`[bills] getBill failed for ${tracked.billNumber}:`, e);
-                // Return stale data if available, null if not
-                return { ...tracked, bill: cachedBill?.data ?? null };
+                console.error(`[bills] error fetching/caching ${tracked.billNumber}:`, e);
+                return { ...tracked, bill: null };
             }
         }),
     );
