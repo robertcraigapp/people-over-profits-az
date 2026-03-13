@@ -15,22 +15,30 @@ When a user visits `/resources/find-rep` and legislators are already cached in l
 
 ### On mount
 - Check `legislatorCache.load()`
-- **Cache hit:** populate `legislators` + `resolvedAddress` from cache; hide the search form
-- **Cache miss:** show the search form (existing behavior)
+- **Cache hit:** populate `legislators` + `resolvedAddress` from cache; set `showSearchForm = false`
+- **Cache miss:** set `showSearchForm = true` (existing behavior — form shown immediately)
 
 ### "Change address" link
 - Sets `showSearchForm = true`
-- Cached legislators remain visible below the open form
-- Google Maps `PlaceAutocompleteElement` mounts at this point (lazy load)
+- Resets `address = ''` and `coords = null` so stale values don't linger in form state
+- Cached legislators remain visible below the open form while `showSearchForm === true`
+- Google Maps script loads and `PlaceAutocompleteElement` mounts at this point (lazy)
+
+### Cancel button (form → cached results)
+- A "Cancel" button appears in the form **only when cached legislators exist** (`legislators !== null && legislators.length > 0`)
+- Clicking Cancel sets `showSearchForm = false` — returns to the cached results view
+- If there are no cached legislators (fresh visit), no Cancel button is shown
 
 ### Successful new search
 - Sets `showSearchForm = false`
-- Updates `legislators`, `resolvedAddress`, and localStorage cache
+- Clears the cached results immediately when the user clicks "Find My Legislators" (existing `setLegislators(null)` behavior is kept — results clear during loading, then repopulate)
+- Updates `legislators`, `resolvedAddress`, and localStorage cache on success
 
-### Google Maps script loading
-- Currently loads unconditionally on mount
-- New behavior: only load (and mount `PlaceAutocompleteElement`) when `showSearchForm === true`
-- Avoids loading the Maps SDK when the user already has cached results
+### Google Maps script and PlaceAutocompleteElement
+- **Both** the script-loading effect and the `PlaceAutocompleteElement` mount effect are gated on `showSearchForm === true` — neither runs on mount when the cache is hit
+- The form container is **CSS-hidden** (`className='hidden'` or equivalent) rather than conditionally rendered, to preserve the `containerRef` DOM node and avoid stale `autocompleteRef` on re-open
+- `autocompleteRef.current` guard (`if (autocompleteRef.current) return`) prevents double-mounting when the form is shown a second time
+- When the user clicks "Change address" (`showSearchForm` becomes `true`), both effects run for the first time, loading the script and mounting the element exactly as they do today on a fresh visit
 
 ---
 
@@ -44,12 +52,24 @@ When a user visits `/resources/find-rep` and legislators are already cached in l
 [Take Action → button]
 ```
 
-**Form open (with cached results below):**
+**Form open (cached results below, Cancel visible):**
 ```
+[Showing legislators for 123 Main St, Phoenix — Change address | Cancel]
 [Address search form]
-[State Legislators grid]   ← cached, stays visible
+[State Legislators grid]   ← cached, stays visible during typing
 [Federal Representatives grid]
 [Take Action → button]
+```
+
+**Loading (new search submitted):**
+```
+[Address search form]
+[Searching…]              ← legislators cleared immediately on submit
+```
+
+**Fresh visit (no cache):**
+```
+[Address search form]     ← no Cancel button, no cached results
 ```
 
 ---
@@ -58,9 +78,11 @@ When a user visits `/resources/find-rep` and legislators are already cached in l
 
 | State var | Before | After |
 |---|---|---|
-| `showSearchForm` | (new) | `true` if no cache, `false` if cache exists |
+| `showSearchForm` | (new) | `true` if no cache on mount, `false` if cache hit |
 | `resolvedAddress` | set after search | also set on mount from cache |
 | `legislators` | set after search | also set on mount from cache |
+| `address` | unchanged | also reset to `''` on "Change address" click |
+| `coords` | unchanged | also reset to `null` on "Change address" click |
 
 No new props, no new files, no new routes.
 
@@ -68,8 +90,9 @@ No new props, no new files, no new routes.
 
 ## Error handling
 
-- Invalid/corrupt cache entry: `legislatorCache.load()` already returns `null` in this case → falls back to showing form
+- Invalid/corrupt cache entry: `legislatorCache.load()` returns `null` → falls back to showing form
 - Expired cache (>30 days): same — `load()` returns `null`
+- User opens form, doesn't complete search, clicks Cancel: cached results are still in state and display normally
 
 ---
 
