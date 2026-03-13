@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import type { BillResponse } from '../shared/billTypes';
 
 const STATUS_LABELS: Record<number, string> = {
@@ -32,6 +33,7 @@ const POSITION_LABELS: Record<string, string> = {
 };
 
 function BillCard({ bill: billResponse }: { bill: BillResponse }) {
+    const navigate = useNavigate();
     const { billNumber, popazInsight, popazPosition, bill } = billResponse;
     const positionStyle = POSITION_STYLES[popazPosition] ?? '';
 
@@ -109,6 +111,15 @@ function BillCard({ bill: billResponse }: { bill: BillResponse }) {
                     Bill details unavailable — data will refresh shortly.
                 </p>
             )}
+
+            <div className='mt-4'>
+                <button
+                    onClick={() => navigate('/take-action', { state: { selectedBillNumber: billNumber } })}
+                    className='text-sm font-bold text-brand-orange hover:text-brand-rust transition-colors'
+                >
+                    Contact Your Legislators →
+                </button>
+            </div>
         </div>
     );
 }
