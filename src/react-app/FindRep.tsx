@@ -23,9 +23,23 @@ function FindRep() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [scriptLoaded, setScriptLoaded] = useState(false);
+    const [showSearchForm, setShowSearchForm] = useState(false);
+
+    // Load legislators from cache on mount; show search form only if no cache
+    useEffect(() => {
+        const cached = legislatorCache.load();
+        if (cached && cached.legislators.length > 0) {
+            setLegislators(cached.legislators);
+            setResolvedAddress(cached.address);
+            // showSearchForm stays false — cached results shown immediately
+        } else {
+            setShowSearchForm(true);
+        }
+    }, []);
 
     // Load Google Maps JS API (v=beta for PlaceAutocompleteElement)
     useEffect(() => {
+        if (!showSearchForm) return;
         if (window.google) {
             setScriptLoaded(true);
             return;
@@ -41,11 +55,11 @@ function FindRep() {
         script.async = true;
         script.defer = true;
         document.head.appendChild(script);
-    }, []);
+    }, [showSearchForm]);
 
     // Mount PlaceAutocompleteElement once script is ready
     useEffect(() => {
-        if (!scriptLoaded || !containerRef.current || autocompleteRef.current) return;
+        if (!showSearchForm || !scriptLoaded || !containerRef.current || autocompleteRef.current) return;
 
         const placeAutocomplete = new window.google.maps.places.PlaceAutocompleteElement({
             componentRestrictions: { country: 'us' },
@@ -65,7 +79,7 @@ function FindRep() {
             const loc = place.location;
             if (loc) setCoords({ lat: loc.lat(), lng: loc.lng() });
         });
-    }, [scriptLoaded]);
+    }, [showSearchForm, scriptLoaded]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -103,11 +117,18 @@ function FindRep() {
             setLegislators(results);
             setResolvedAddress(trimmed);
             legislatorCache.save(trimmed, results);
+            setShowSearchForm(false);
         } catch {
             setError('Something went wrong. Please try again in a moment.');
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleChangeAddress = () => {
+        setShowSearchForm(true);
+        setAddress('');
+        setCoords(null);
     };
 
     const stateLegislators = legislators?.filter((l) => l.level === 'state') ?? [];
@@ -148,10 +169,41 @@ function FindRep() {
                 </div>
             </div>
 
-            {/* Search Section */}
+            {/* Search / Results Section */}
             <main className='flex-grow py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-brand-sand/10'>
                 <div className='max-w-3xl mx-auto'>
-                    <form onSubmit={handleSubmit} className='mb-10'>
+
+                    {/* Address context bar — shown whenever we have cached/fetched legislators */}
+                    {legislators && legislators.length > 0 && resolvedAddress && (
+                        <div className='flex items-center gap-2 text-sm text-gray-500 mb-6'>
+                            Showing legislators for{' '}
+                            <span className='font-medium text-gray-700'>{resolvedAddress}</span>
+                            {' — '}
+                            <button
+                                onClick={handleChangeAddress}
+                                className='text-brand-orange hover:underline font-medium'
+                            >
+                                Change address
+                            </button>
+                            {showSearchForm && (
+                                <>
+                                    {' | '}
+                                    <button
+                                        onClick={() => setShowSearchForm(false)}
+                                        className='text-gray-500 hover:underline'
+                                    >
+                                        Cancel
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Search form — CSS-hidden when not needed, always in DOM to preserve containerRef */}
+                    <form
+                        onSubmit={handleSubmit}
+                        className={`mb-10 ${!showSearchForm ? 'hidden' : ''}`}
+                    >
                         <label className='block text-lg font-bold text-brand-maroon mb-3'>
                             Your Arizona Address
                         </label>
