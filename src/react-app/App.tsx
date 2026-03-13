@@ -6,6 +6,7 @@ import Resources from './Resources';
 import SignUp from './SignUp';
 import FindRep from './FindRep';
 import BillTracker from './BillTracker';
+import TakeAction from './TakeAction';
 import { FF_LEGISLATOR_LOOKUP, FF_BILL_TRACKER } from './featureFlags';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
                 )}
                 {FF_BILL_TRACKER && (
                     <Route path='bills' element={<BillTracker />} />
+                )}
+                {FF_BILL_TRACKER && (
+                    <Route path='take-action' element={<TakeAction />} />
                 )}
             </Route>
         </Routes>

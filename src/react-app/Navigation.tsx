@@ -44,6 +44,14 @@ function Navigation() {
                             Track Bills
                         </Link>
                     )}
+                    {FF_BILL_TRACKER && (
+                        <Link
+                            to='/take-action'
+                            className='font-display text-brand-maroon font-semibold hover:text-brand-orange transition-colors tracking-wide uppercase text-sm'
+                        >
+                            Take Action
+                        </Link>
+                    )}
                     <Link
                         to='/signup'
                         className='font-display bg-brand-blue text-white px-6 py-2 rounded font-bold hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 uppercase tracking-wider text-sm'
