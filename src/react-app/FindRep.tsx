@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 import type { Legislator } from '../shared/legislatorTypes';
+import * as legislatorCache from './legislatorCache';
 
 declare global {
     interface Window {
@@ -11,11 +13,13 @@ declare global {
 const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY ?? 'AIzaSyBdmO3mVPUaERDJ7fgPDb2o5MTieXjq-hc';
 
 function FindRep() {
+    const navigate = useNavigate();
     const containerRef = useRef<HTMLDivElement>(null);
     const autocompleteRef = useRef<any>(null);
     const [address, setAddress] = useState('');
     const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
     const [legislators, setLegislators] = useState<Legislator[] | null>(null);
+    const [resolvedAddress, setResolvedAddress] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [scriptLoaded, setScriptLoaded] = useState(false);
@@ -97,6 +101,8 @@ function FindRep() {
                 return;
             }
             setLegislators(results);
+            setResolvedAddress(trimmed);
+            legislatorCache.save(trimmed, results);
         } catch {
             setError('Something went wrong. Please try again in a moment.');
         } finally {
@@ -190,6 +196,14 @@ function FindRep() {
                                     </div>
                                 </section>
                             )}
+                            <div className='mt-8 text-center'>
+                                <button
+                                    onClick={() => navigate('/take-action', { state: { legislators, address: resolvedAddress } })}
+                                    className='bg-brand-orange text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-brand-rust transition-all shadow-lg hover:shadow-xl'
+                                >
+                                    Take Action →
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>
