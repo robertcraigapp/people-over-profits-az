@@ -242,6 +242,8 @@ async function fetchBill(apiKey: string, billId: number): Promise<LegiScanBill> 
 
 // --- Types ---
 
+// NOTE: This type is mirrored in src/shared/legislatorTypes.ts (React app)
+// and worker/index.ts (Cloudflare Worker). Keep them in sync manually.
 type Legislator = {
     name: string;
     office: string;

@@ -1,16 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-
-type Legislator = {
-    name: string;
-    office: string;
-    party: string;
-    level: "state" | "federal";
-    phone?: string;
-    address?: string;
-    email?: string;
-    website?: string;
-    photoUrl?: string;
-};
+import type { Legislator } from '../shared/legislatorTypes';
 
 declare global {
     interface Window {
