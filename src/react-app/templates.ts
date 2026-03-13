@@ -10,7 +10,8 @@ function deriveTitle(office: string): string {
 }
 
 function deriveLastName(name: string): string {
-    return name.split(' ').at(-1) ?? name;
+    const parts = name.split(' ');
+    return parts[parts.length - 1] ?? name;
 }
 
 type Position = 'support' | 'oppose' | 'monitor' | 'mixed';
