@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import GetInvolvedSteps from './GetInvolvedSteps';
 
 const COMMUNITY_UPDATES_URL =
     'https://drive.google.com/drive/folders/1hPBW0ccRVnu4C49x4Z74MpvYR8BctvGz?usp=sharing';
@@ -59,6 +60,8 @@ function Home() {
                         </div>
                     </div>
                 </div>
+
+                <GetInvolvedSteps />
 
                 {/* Info Grid */}
                 <section className='py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-brand-sand/10'>
