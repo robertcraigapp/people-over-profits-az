@@ -167,7 +167,7 @@ function Home() {
                     People Over Profits — AZ (POPAZ)
                 </p>
                 <p className='text-sm opacity-70'>
-                    Building a more just Arizona. © 2026
+                    Building a more just Arizona, together. © 2026
                 </p>
             </footer>
         </>
