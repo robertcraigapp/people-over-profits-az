@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 import coalitionDataRaw from './CoalitionData.json';
 import { CoalitionMember } from './types/CoalitionMember';
 
@@ -145,9 +146,12 @@ function Coalition() {
                                 Interested in partnering with us? Together, we
                                 can build a more just Arizona.
                             </p>
-                            <button className='bg-white text-brand-maroon px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-orange hover:text-white transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95'>
-                                Get Involved
-                            </button>
+                            <Link
+                                to='/join'
+                                className='inline-block bg-white text-brand-maroon px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-orange hover:text-white transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95'
+                            >
+                                Join the Coalition
+                            </Link>
                         </div>
                     </div>
                 </div>
