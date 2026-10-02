@@ -1,5 +1,24 @@
 import { Link } from 'react-router';
 
+const MEMBER_WAYS = [
+    {
+        title: 'Connect',
+        text: 'Attend bi-monthly coalition meetings and build relationships with people and organizations working across Arizona.',
+    },
+    {
+        title: 'Learn',
+        text: "Exchange information, research, lived experience, tools, and resources related to POP AZ's priorities.",
+    },
+    {
+        title: 'Collaborate',
+        text: 'Participate in workgroups, cross-sector partnerships, community education, storytelling, or other collaborative projects.',
+    },
+    {
+        title: 'Take Action',
+        text: 'Engage in advocacy, public education, community outreach, and collective actions aligned with coalition priorities. Amplify voices, strategize as a collective, and help to shape the priorities and conversations.',
+    },
+];
+
 function Join() {
     return (
         <>
@@ -54,6 +73,44 @@ function Join() {
                         </p>
                     </section>
                 </div>
+
+                {/* What Membership Means */}
+                <section className='max-w-6xl mx-auto mt-24'>
+                    <div className='max-w-4xl mx-auto text-center mb-12'>
+                        <h2 className='font-display text-3xl md:text-4xl font-bold text-brand-maroon mb-6 uppercase tracking-wide'>
+                            What Does It Mean to Be a Coalition Member?
+                        </h2>
+                        <p className='text-xl font-bold text-brand-plum mb-4'>
+                            Coalition membership is an invitation to
+                            participate, not a requirement to do everything.
+                        </p>
+                        <p className='text-lg text-gray-700 leading-relaxed'>
+                            POP AZ members engage in ways that align with their
+                            experience, expertise, organizational capacity, and
+                            interests. Some members participate regularly in
+                            workgroups or advocacy efforts. Others contribute
+                            expertise, amplify information, attend coalition
+                            meetings, share resources, or collaborate when
+                            opportunities align with their work.
+                        </p>
+                    </div>
+
+                    <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+                        {MEMBER_WAYS.map((way) => (
+                            <div
+                                key={way.title}
+                                className='bg-white rounded-2xl shadow-lg border border-gray-100 border-t-4 border-t-brand-orange p-6'
+                            >
+                                <h3 className='font-display text-2xl font-bold text-brand-maroon mb-3 uppercase tracking-wide'>
+                                    {way.title}
+                                </h3>
+                                <p className='text-gray-700 leading-relaxed'>
+                                    {way.text}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
             </main>
 
             {/* Footer */}
