@@ -19,6 +19,21 @@ const MEMBER_WAYS = [
     },
 ];
 
+const WHO_CAN_JOIN = [
+    'People directly impacted by incarceration, detention, court debt, and the criminal legal system',
+    'Community-based and grassroots organizations',
+    'Advocacy and civil rights organizations',
+    'Reentry and restorative justice organizations',
+    'Faith communities',
+    'Researchers and educators',
+    'Legal and policy organizations',
+    'Behavioral health and social service organizations',
+    'Philanthropic and funding partners',
+    'Businesses and socially responsible investors',
+    'Students and emerging advocates',
+    'Individual community members',
+];
+
 function Join() {
     return (
         <>
@@ -110,6 +125,64 @@ function Join() {
                             </div>
                         ))}
                     </div>
+                </section>
+
+                {/* Who Can Join */}
+                <section className='max-w-4xl mx-auto mt-24'>
+                    <h2 className='font-display text-3xl md:text-4xl font-bold text-brand-maroon mb-6 uppercase tracking-wide text-center'>
+                        Who Can Join?
+                    </h2>
+                    <p className='text-lg text-gray-700 mb-6'>
+                        POP AZ welcomes participation from:
+                    </p>
+                    <ul className='grid sm:grid-cols-2 gap-x-8 gap-y-3 mb-8'>
+                        {WHO_CAN_JOIN.map((who) => (
+                            <li
+                                key={who}
+                                className='flex items-start gap-3 text-gray-700'
+                            >
+                                <span className='mt-2 w-2 h-2 bg-brand-orange rounded-full flex-shrink-0'></span>
+                                <span>{who}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <p className='text-lg text-gray-700 leading-relaxed p-6 bg-gradient-to-br from-brand-sand/20 to-brand-orange/10 border-l-4 border-brand-orange rounded-lg'>
+                        You don't have to be a criminal justice expert to
+                        participate. Lived experience, professional expertise,
+                        community relationships, curiosity, and a willingness
+                        to collaborate all have value within the coalition.
+                    </p>
+                </section>
+
+                {/* What Happens Next */}
+                <section className='max-w-4xl mx-auto mt-24 bg-gradient-to-br from-brand-maroon via-brand-plum to-brand-maroon rounded-3xl p-10 md:p-12 text-white'>
+                    <h2 className='font-display text-3xl md:text-4xl font-bold mb-6 uppercase tracking-wide'>
+                        What Happens Next?
+                    </h2>
+                    <div className='space-y-4 text-lg text-brand-sand leading-relaxed mb-8'>
+                        <p>
+                            In completing the join the movement form, you'll
+                            receive information about the next POP AZ Coalition
+                            Meeting and opportunities related to your interests.
+                            You can participate in ways that work for you. This
+                            helps to shape what's next for the coalition and what
+                            happens in Arizona in strengthening the work we're
+                            doing with POP AZ.
+                        </p>
+                        <p>
+                            If you want to build relationships across sectors in
+                            Arizona, bring your organization into the learning
+                            and collaboration space. Sharing of expertise and
+                            exploring opportunities helps us with our collective
+                            action.
+                        </p>
+                    </div>
+                    <Link
+                        to='/signup'
+                        className='inline-block bg-white text-brand-maroon px-8 py-4 rounded-lg font-bold text-lg uppercase tracking-wide hover:bg-brand-orange hover:text-white transition-all shadow-xl hover:scale-105 active:scale-95'
+                    >
+                        Become a Member
+                    </Link>
                 </section>
             </main>
 
