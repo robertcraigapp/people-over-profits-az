@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router';
 import Coalition from './Coalition';
 import Resources from './Resources';
 import SignUp from './SignUp';
+import Join from './Join';
 import FindRep from './FindRep';
 import { FF_LEGISLATOR_LOOKUP } from './featureFlags';
 
@@ -14,6 +15,7 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path='coalition' element={<Coalition />} />
                 <Route path='resources' element={<Resources />} />
+                <Route path='join' element={<Join />} />
                 <Route path='signup' element={<SignUp />} />
                 {FF_LEGISLATOR_LOOKUP && (
                     <Route path='resources/find-rep' element={<FindRep />} />
