@@ -44,7 +44,7 @@ function Coalition() {
                                 {coalitionData.length}
                             </div>
                             <div className='text-sm text-white uppercase tracking-wider'>
-                                Partner Organizations
+                                Coalition Partners
                             </div>
                         </div>
                         <div className='bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all'>
@@ -83,140 +83,51 @@ function Coalition() {
                         </p>
                     </div>
 
-                    {/* Members Grid - Asymmetric Masonry Style */}
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                    {/* Members List */}
+                    <ul className='grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto'>
                         {coalitionData.map((member, index) => (
-                            <div
+                            <li
                                 key={member.id}
-                                className={`group relative transition-all duration-700 ${
+                                className={`transition-all duration-700 ${
                                     visibleCards.includes(index)
                                         ? 'opacity-100 translate-y-0'
                                         : 'opacity-0 translate-y-8'
-                                } ${index % 5 === 0 ? 'lg:col-span-2' : ''}`}
+                                }`}
                             >
-                                {/* Card Background with Gradient Border Effect */}
-                                <div className='absolute inset-0 bg-gradient-to-br from-brand-orange via-brand-rust to-brand-plum rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm'></div>
-
-                                {/* Main Card */}
-                                <div className='relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full flex flex-col'>
-                                    {/* Logo Section */}
-                                    <div
-                                        className={`relative overflow-hidden ${
-                                            index % 5 === 0 ? 'h-64' : 'h-48'
-                                        } bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8 border-b border-gray-200`}
+                                {member.website ? (
+                                    <a
+                                        href={member.website}
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                        className='group flex items-center justify-between gap-3 h-full bg-white rounded-xl px-5 py-4 shadow-sm border border-gray-100 border-l-4 border-l-brand-orange hover:shadow-lg hover:border-l-brand-rust transition-all'
                                     >
-                                        <div className='absolute inset-0 opacity-5 bg-gradient-to-br from-brand-blue via-brand-plum to-brand-orange'></div>
-                                        <img
-                                            src={member.logo}
-                                            alt={`${member.name} logo`}
-                                            className='relative z-10 max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-110'
-                                        />
-
-                                        {/* Hover overlay */}
-                                        <div className='absolute inset-0 bg-brand-maroon/0 group-hover:bg-brand-maroon/5 transition-colors duration-300'></div>
-                                    </div>
-
-                                    {/* Content Section */}
-                                    <div className='p-6 flex-grow flex flex-col'>
-                                        {/* Focus Area Tag */}
-                                        <div className='mb-3'>
-                                            <span className='inline-block bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full'>
-                                                {member.focusArea}
-                                            </span>
-                                        </div>
-
-                                        {/* Organization Name */}
-                                        <h3 className='font-display text-xl md:text-2xl font-bold text-brand-maroon mb-3 group-hover:text-brand-orange transition-colors uppercase tracking-wide'>
+                                        <span className='font-bold text-brand-maroon group-hover:text-brand-orange transition-colors'>
                                             {member.name}
-                                        </h3>
-
-                                        {/* Description */}
-                                        <p className='text-gray-700 leading-relaxed mb-4 flex-grow'>
-                                            {member.description}
-                                        </p>
-
-                                        {/* Meta Information */}
-                                        <div className='space-y-2 pt-4 border-t border-gray-100'>
-                                            {member.founded && (
-                                                <div className='flex items-center gap-2 text-sm text-gray-600'>
-                                                    <svg
-                                                        className='w-4 h-4 text-brand-blue'
-                                                        fill='none'
-                                                        stroke='currentColor'
-                                                        viewBox='0 0 24 24'
-                                                    >
-                                                        <path
-                                                            strokeLinecap='round'
-                                                            strokeLinejoin='round'
-                                                            strokeWidth={2}
-                                                            d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
-                                                        />
-                                                    </svg>
-                                                    <span>
-                                                        Founded {member.founded}
-                                                    </span>
-                                                </div>
-                                            )}
-                                            {member.location && (
-                                                <div className='flex items-center gap-2 text-sm text-gray-600'>
-                                                    <svg
-                                                        className='w-4 h-4 text-brand-rust'
-                                                        fill='none'
-                                                        stroke='currentColor'
-                                                        viewBox='0 0 24 24'
-                                                    >
-                                                        <path
-                                                            strokeLinecap='round'
-                                                            strokeLinejoin='round'
-                                                            strokeWidth={2}
-                                                            d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
-                                                        />
-                                                        <path
-                                                            strokeLinecap='round'
-                                                            strokeLinejoin='round'
-                                                            strokeWidth={2}
-                                                            d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
-                                                        />
-                                                    </svg>
-                                                    <span>
-                                                        {member.location}
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        {/* Website Link */}
-                                        {member.website && (
-                                            <a
-                                                href={member.website}
-                                                target='_blank'
-                                                rel='noopener noreferrer'
-                                                className='mt-4 inline-flex items-center gap-2 text-brand-orange font-semibold hover:text-brand-rust transition-colors group/link'
-                                            >
-                                                <span>Learn More</span>
-                                                <svg
-                                                    className='w-4 h-4 transition-transform group-hover/link:translate-x-1'
-                                                    fill='none'
-                                                    stroke='currentColor'
-                                                    viewBox='0 0 24 24'
-                                                >
-                                                    <path
-                                                        strokeLinecap='round'
-                                                        strokeLinejoin='round'
-                                                        strokeWidth={2}
-                                                        d='M9 5l7 7-7 7'
-                                                    />
-                                                </svg>
-                                            </a>
-                                        )}
+                                        </span>
+                                        <svg
+                                            className='w-4 h-4 flex-shrink-0 text-brand-orange transition-transform group-hover:translate-x-1'
+                                            fill='none'
+                                            stroke='currentColor'
+                                            viewBox='0 0 24 24'
+                                        >
+                                            <path
+                                                strokeLinecap='round'
+                                                strokeLinejoin='round'
+                                                strokeWidth={2}
+                                                d='M9 5l7 7-7 7'
+                                            />
+                                        </svg>
+                                    </a>
+                                ) : (
+                                    <div className='flex items-center h-full bg-white rounded-xl px-5 py-4 shadow-sm border border-gray-100 border-l-4 border-l-brand-sand'>
+                                        <span className='font-bold text-brand-maroon'>
+                                            {member.name}
+                                        </span>
                                     </div>
-
-                                    {/* Animated accent bar */}
-                                    <div className='h-1 bg-gradient-to-r from-brand-orange via-brand-rust to-brand-plum transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left'></div>
-                                </div>
-                            </div>
+                                )}
+                            </li>
                         ))}
-                    </div>
+                    </ul>
 
                     {/* Call to Action Section */}
                     <div className='mt-24 bg-gradient-to-br from-brand-maroon via-brand-plum to-brand-maroon rounded-3xl p-12 text-center text-white relative overflow-hidden'>
