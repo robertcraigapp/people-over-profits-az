@@ -1,5 +1,8 @@
 import { Link } from 'react-router';
 
+const COMMUNITY_UPDATES_URL =
+    'https://drive.google.com/drive/folders/1hPBW0ccRVnu4C49x4Z74MpvYR8BctvGz?usp=sharing';
+
 function Home() {
     return (
         <>
@@ -24,19 +27,35 @@ function Home() {
                             phone calls, tablets, fines, and fees.
                         </p>
 
-                        <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                            <Link
-                                to='/signup'
-                                className='bg-brand-blue text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-blue transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95'
-                            >
-                                Join the Fight
-                            </Link>
-                            <Link
-                                to='/coalition'
-                                className='bg-brand-maroon border border-white/30 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-rust transition-all backdrop-blur-sm'
-                            >
-                                Our Coalition
-                            </Link>
+                        <div className='grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto'>
+                            <div className='flex flex-col items-center'>
+                                <Link
+                                    to='/join'
+                                    className='w-full bg-brand-blue text-white px-8 py-4 rounded-lg font-bold text-lg uppercase tracking-wide hover:bg-brand-blue transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95'
+                                >
+                                    Join the Coalition
+                                </Link>
+                                <p className='mt-3 text-white font-medium text-sm md:text-base leading-relaxed drop-shadow'>
+                                    Become part of the statewide network
+                                    working toward justice and addressing the
+                                    ways profit and revenue generation
+                                    undermine justice.
+                                </p>
+                            </div>
+                            <div className='flex flex-col items-center'>
+                                <a
+                                    href={COMMUNITY_UPDATES_URL}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    className='w-full bg-brand-maroon border border-white/30 text-white px-8 py-4 rounded-lg font-bold text-lg uppercase tracking-wide hover:bg-brand-rust transition-all backdrop-blur-sm'
+                                >
+                                    Learn & Take Action
+                                </a>
+                                <p className='mt-3 text-white font-medium text-sm md:text-base leading-relaxed drop-shadow'>
+                                    Explore resources, upcoming meetings,
+                                    tools, campaigns, and ways to get involved.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
