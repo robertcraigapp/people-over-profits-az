@@ -178,7 +178,7 @@ function buildEmailHtml(data: SignupBody): string {
         ['Email', data.email],
         ['Phone', data.phone || '—'],
         ['Zip Code', data.zipCode || '—'],
-        ['Volunteer Interest', data.volunteer || '—'],
+        ['Membership Interest', data.volunteer || '—'],
         ['How They Heard', data.hearAbout || '—'],
     ]
         .map(

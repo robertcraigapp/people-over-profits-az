@@ -128,12 +128,12 @@ function SignUp() {
 
                             <div className='relative'>
                                 <h2 className='font-display text-3xl md:text-4xl font-bold text-white mb-3 uppercase tracking-wide'>
-                                    Sign Up Today
+                                    Become a Member of the Coalition
                                 </h2>
                                 <p className='text-brand-sand text-lg'>
-                                    Your voice matters. Join thousands of
-                                    Arizonans working to end profiteering in
-                                    the criminal legal system.
+                                    Share a little about yourself and we'll
+                                    reach out about the next POP AZ Coalition
+                                    Meeting and ways to get involved.
                                 </p>
                             </div>
                         </div>
@@ -258,7 +258,8 @@ function SignUp() {
                                         htmlFor='volunteer'
                                         className='block text-sm font-bold text-gray-700 mb-2'
                                     >
-                                        Are you interested in volunteering?
+                                        Would you like to become a member of
+                                        the coalition?
                                     </label>
                                     <select
                                         id='volunteer'
