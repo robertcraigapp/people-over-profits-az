@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react';
+import { Link } from 'react-router';
+import { FF_LEGISLATOR_LOOKUP } from './featureFlags';
 import { PRIORITIES } from './priorities';
 
 const POPAZ_MATERIALS_URL =
@@ -11,7 +13,11 @@ const COMMUNITY_UPDATES_URL =
 const SECTIONS = [
     { id: 'resources', label: 'Resources' },
     { id: 'meetings', label: 'Meetings & Updates' },
+    { id: 'tools', label: 'Tools' },
 ];
+
+const DIVESTMENT_TOOL_URL =
+    'https://sarahtowle.substack.com/p/divest-from-for-profit-prisons-a?r=464pd&utm_campaign=post-expanded-share&utm_medium=web';
 
 function ExternalCard({
     href,
@@ -169,6 +175,37 @@ function Resources() {
                             Upcoming meetings, campaigns, and ways to get
                             involved.
                         </ExternalCard>
+                    </section>
+
+                    {/* Tools */}
+                    <section id='tools' className='scroll-mt-28'>
+                        <SectionHeading>Tools</SectionHeading>
+                        <div className='grid md:grid-cols-2 gap-6'>
+                            <ExternalCard
+                                href={DIVESTMENT_TOOL_URL}
+                                title='Divestment Tool'
+                            >
+                                Updates on divesting from for-profit prisons.
+                            </ExternalCard>
+                            {FF_LEGISLATOR_LOOKUP && (
+                                <Link
+                                    to='/resources/find-rep'
+                                    className='group block bg-white rounded-2xl shadow-lg border border-gray-100 border-l-4 border-l-brand-orange p-6 hover:shadow-2xl transition-all'
+                                >
+                                    <h3 className='font-display text-xl md:text-2xl font-bold text-brand-maroon mb-2 uppercase tracking-wide group-hover:text-brand-orange transition-colors'>
+                                        Find Your Representatives
+                                    </h3>
+                                    <p className='text-gray-700 leading-relaxed mb-3'>
+                                        Enter your Arizona address to find your
+                                        state and federal legislators and how
+                                        to contact them.
+                                    </p>
+                                    <span className='text-brand-orange font-semibold'>
+                                        Find My Legislators
+                                    </span>
+                                </Link>
+                            )}
+                        </div>
                     </section>
                 </div>
             </main>
