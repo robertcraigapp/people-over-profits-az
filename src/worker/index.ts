@@ -159,6 +159,7 @@ type SignupBody = {
     phone?: string;
     zipCode?: string;
     volunteer?: string;
+    engagement?: string[];
     hearAbout?: string;
 };
 
@@ -179,6 +180,12 @@ function buildEmailHtml(data: SignupBody): string {
         ['Phone', data.phone || '—'],
         ['Zip Code', data.zipCode || '—'],
         ['Membership Interest', data.volunteer || '—'],
+        [
+            'Ways to Engage',
+            Array.isArray(data.engagement) && data.engagement.length
+                ? data.engagement.map(String).join('; ')
+                : '—',
+        ],
         ['How They Heard', data.hearAbout || '—'],
     ]
         .map(

@@ -1,5 +1,21 @@
 import { useState } from 'react';
 
+const ENGAGEMENT_OPTIONS = [
+    'Attend bi-monthly coalition meetings',
+    'Participate in a priority workgroup',
+    'Advocacy and policy',
+    'Community education',
+    'Storytelling / lived experience',
+    'Research and data',
+    'Divestment / responsible investment strategies',
+    'Reentry and restoration of rights',
+    'Community healing and alternatives to punishment',
+    'Communications and public engagement',
+    'Workshops and training',
+    'Share resources or expertise',
+    "I'm not sure yet, but I'd like to learn more",
+];
+
 function SignUp() {
     const [formData, setFormData] = useState({
         firstName: '',
@@ -8,6 +24,7 @@ function SignUp() {
         phone: '',
         zipCode: '',
         volunteer: '',
+        engagement: [] as string[],
         hearAbout: '',
     });
 
@@ -20,6 +37,15 @@ function SignUp() {
         setFormData((prev) => ({
             ...prev,
             [name]: value,
+        }));
+    };
+
+    const handleEngagementChange = (option: string, checked: boolean) => {
+        setFormData((prev) => ({
+            ...prev,
+            engagement: checked
+                ? [...prev.engagement, option]
+                : prev.engagement.filter((o) => o !== option),
         }));
     };
 
@@ -285,6 +311,36 @@ function SignUp() {
                                         </option>
                                     </select>
                                 </div>
+
+                                <fieldset className='mb-6'>
+                                    <legend className='block text-sm font-bold text-gray-700 mb-3'>
+                                        How would you like to engage with POP
+                                        AZ?
+                                    </legend>
+                                    <div className='grid sm:grid-cols-2 gap-3'>
+                                        {ENGAGEMENT_OPTIONS.map((option) => (
+                                            <label
+                                                key={option}
+                                                className='flex items-start gap-3 text-sm text-gray-700 cursor-pointer'
+                                            >
+                                                <input
+                                                    type='checkbox'
+                                                    checked={formData.engagement.includes(
+                                                        option,
+                                                    )}
+                                                    onChange={(e) =>
+                                                        handleEngagementChange(
+                                                            option,
+                                                            e.target.checked,
+                                                        )
+                                                    }
+                                                    className='mt-0.5 w-4 h-4 accent-brand-orange flex-shrink-0'
+                                                />
+                                                <span>{option}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                </fieldset>
 
                                 <div>
                                     <label
