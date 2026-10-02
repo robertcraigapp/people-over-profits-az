@@ -1,10 +1,17 @@
 import type { ReactNode } from 'react';
+import { PRIORITIES } from './priorities';
 
 const POPAZ_MATERIALS_URL =
     'https://drive.google.com/drive/folders/1bmgqokylOaqsMwmARno_qugCjiszuLGy?usp=sharing';
 
+const COMMUNITY_UPDATES_URL =
+    'https://drive.google.com/drive/folders/1hPBW0ccRVnu4C49x4Z74MpvYR8BctvGz?usp=sharing';
+
 // Each hub section gets a jump button at the top of the page
-const SECTIONS = [{ id: 'resources', label: 'Resources' }];
+const SECTIONS = [
+    { id: 'resources', label: 'Resources' },
+    { id: 'meetings', label: 'Meetings & Updates' },
+];
 
 function ExternalCard({
     href,
@@ -100,6 +107,67 @@ function Resources() {
                         >
                             Our 1-page overview of POP AZ, our feasibility
                             study, and other POP AZ materials.
+                        </ExternalCard>
+                    </section>
+
+                    {/* Meetings & Updates */}
+                    <section id='meetings' className='scroll-mt-28'>
+                        <SectionHeading>Meetings & Updates</SectionHeading>
+
+                        <p className='text-lg text-gray-700 leading-relaxed mb-8 p-6 bg-gradient-to-br from-brand-sand/20 to-brand-orange/10 border-l-4 border-brand-orange rounded-lg'>
+                            In 2026, the coalition moved toward priorities 1
+                            and 3 as our top priorities:{' '}
+                            {PRIORITIES.filter((p) => p.focus2026)
+                                .map((p) => p.title)
+                                .join(' and ')}
+                            .
+                        </p>
+
+                        <h3 className='font-display text-2xl font-bold text-brand-maroon mb-2 uppercase tracking-wide'>
+                            What We're Working Toward
+                        </h3>
+                        <p className='text-gray-700 mb-6'>
+                            Our coalition is organized around four
+                            interconnected priorities:
+                        </p>
+                        <ol className='grid md:grid-cols-2 gap-6 mb-10'>
+                            {PRIORITIES.map((p) => (
+                                <li
+                                    key={p.number}
+                                    className={`relative bg-white rounded-2xl shadow-lg border p-6 ${
+                                        p.focus2026
+                                            ? 'border-brand-orange border-2'
+                                            : 'border-gray-100'
+                                    }`}
+                                >
+                                    {p.focus2026 && (
+                                        <span className='absolute -top-3 right-4 bg-brand-orange text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full'>
+                                            2026 Focus
+                                        </span>
+                                    )}
+                                    <div className='flex items-start gap-4'>
+                                        <span className='w-10 h-10 bg-gradient-to-br from-brand-maroon to-brand-plum text-white font-black rounded-lg flex items-center justify-center flex-shrink-0'>
+                                            {p.number}
+                                        </span>
+                                        <div>
+                                            <h4 className='font-bold text-lg text-brand-maroon mb-2'>
+                                                {p.title}
+                                            </h4>
+                                            <p className='text-gray-700 leading-relaxed'>
+                                                {p.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ol>
+
+                        <ExternalCard
+                            href={COMMUNITY_UPDATES_URL}
+                            title='Community Updates'
+                        >
+                            Upcoming meetings, campaigns, and ways to get
+                            involved.
                         </ExternalCard>
                     </section>
                 </div>
